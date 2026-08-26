@@ -906,3 +906,8 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+.watch-placeholder img {
+    width: ;
+    height: 300px;
+
+}
