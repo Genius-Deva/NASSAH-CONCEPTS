@@ -1,0 +1,3633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Promotions | NASSAH Concept</title>
+
+    <!-- ADMIN CSS -->
+    <link
+        rel="stylesheet"
+        href="../admin-css/admin.css"
+    >
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        /* =========================================
+           PROMOTIONS PAGE
+        ========================================= */
+
+        .promotions-page {
+
+            padding: 35px;
+
+        }
+
+
+        .promotions-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .promotions-header span {
+
+            color: var(--gold);
+
+            font-size: 8px;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .promotions-header h1 {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 28px;
+
+            margin-top: 7px;
+
+        }
+
+
+        .add-promotion-btn {
+
+            background: var(--gold);
+
+            color: #000;
+
+            border: none;
+
+            padding: 13px 20px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .3s;
+
+        }
+
+
+        .add-promotion-btn:hover {
+
+            background: var(--gold-light);
+
+            transform: translateY(-2px);
+
+        }
+
+
+
+        /* =========================================
+           SUMMARY
+        ========================================= */
+
+        .promotion-summary {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .promotion-summary-card {
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            padding: 20px;
+
+        }
+
+
+        .promotion-summary-icon {
+
+            width: 35px;
+
+            height: 35px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #191919;
+
+            border: 1px solid #292929;
+
+            color: var(--gold);
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .promotion-summary-card p {
+
+            color: #666;
+
+            font-size: 8px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .promotion-summary-card h2 {
+
+            color: #ddd;
+
+            font-size: 22px;
+
+        }
+
+
+
+        /* =========================================
+           TOOLS
+        ========================================= */
+
+        .promotion-tools {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-bottom: 20px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .promotion-search {
+
+            flex: 1;
+
+            max-width: 420px;
+
+            min-width: 220px;
+
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+        }
+
+
+        .promotion-search i {
+
+            color: #555;
+
+            padding: 0 15px;
+
+        }
+
+
+        .promotion-search input {
+
+            width: 100%;
+
+            height: 100%;
+
+            border: none;
+
+            outline: none;
+
+            background: transparent;
+
+            color: white;
+
+        }
+
+
+        .promotion-search input::placeholder {
+
+            color: #555;
+
+        }
+
+
+        .promotion-filter {
+
+            height: 45px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            color: #888;
+
+            padding: 0 15px;
+
+            outline: none;
+
+            cursor: pointer;
+
+        }
+
+
+        .promotion-filter:focus {
+
+            border-color: var(--gold);
+
+        }
+
+
+
+        /* =========================================
+           TABLE CARD
+        ========================================= */
+
+        .promotions-table-card {
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            padding: 25px;
+
+        }
+
+
+        .table-wrapper {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+        }
+
+
+        table {
+
+            width: 100%;
+
+            min-width: 950px;
+
+            border-collapse: collapse;
+
+        }
+
+
+        table th {
+
+            text-align: left;
+
+            color: #555;
+
+            font-size: 8px;
+
+            letter-spacing: 1px;
+
+            padding: 15px 10px;
+
+            border-bottom: 1px solid #292929;
+
+        }
+
+
+        table td {
+
+            padding: 17px 10px;
+
+            border-bottom: 1px solid #202020;
+
+            color: #aaa;
+
+            font-size: 10px;
+
+            vertical-align: middle;
+
+        }
+
+
+        table tbody tr {
+
+            transition: .2s;
+
+        }
+
+
+        table tbody tr:hover {
+
+            background: #151515;
+
+        }
+
+
+
+        /* =========================================
+           PROMOTION NAME
+        ========================================= */
+
+        .promotion-name {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .promotion-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #191919;
+
+            border: 1px solid #292929;
+
+            color: var(--gold);
+
+            flex-shrink: 0;
+
+        }
+
+
+        .promotion-name strong {
+
+            display: block;
+
+            color: #ddd;
+
+            font-size: 10px;
+
+        }
+
+
+        .promotion-name small {
+
+            display: block;
+
+            color: #555;
+
+            font-size: 8px;
+
+            margin-top: 5px;
+
+        }
+
+
+
+        /* =========================================
+           DISCOUNT
+        ========================================= */
+
+        .discount-value {
+
+            color: var(--gold);
+
+            font-weight: 700;
+
+            font-size: 13px;
+
+        }
+
+
+        .discount-type {
+
+            color: #555;
+
+            font-size: 7px;
+
+            margin-left: 4px;
+
+        }
+
+
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .promotion-status {
+
+            display: inline-block;
+
+            padding: 6px 9px;
+
+            font-size: 7px;
+
+            letter-spacing: .7px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .status-active {
+
+            color: #73bd88;
+
+            background: rgba(115,189,136,.08);
+
+        }
+
+
+        .status-scheduled {
+
+            color: #6fa8dc;
+
+            background: rgba(111,168,220,.08);
+
+        }
+
+
+        .status-expired {
+
+            color: #777;
+
+            background: rgba(119,119,119,.08);
+
+        }
+
+
+        .status-disabled {
+
+            color: #d95c5c;
+
+            background: rgba(217,92,92,.08);
+
+        }
+
+
+
+        /* =========================================
+           DATE
+        ========================================= */
+
+        .promotion-date {
+
+            color: #888;
+
+            font-size: 9px;
+
+        }
+
+
+        .promotion-date small {
+
+            display: block;
+
+            color: #444;
+
+            margin-top: 4px;
+
+            font-size: 7px;
+
+        }
+
+
+
+        /* =========================================
+           PRODUCTS COUNT
+        ========================================= */
+
+        .products-count {
+
+            color: #bbb;
+
+        }
+
+
+        .products-count i {
+
+            color: var(--gold);
+
+            margin-right: 5px;
+
+        }
+
+
+
+        /* =========================================
+           ACTIONS
+        ========================================= */
+
+        .promotion-actions {
+
+            display: flex;
+
+            gap: 7px;
+
+        }
+
+
+        .promotion-action {
+
+            width: 32px;
+
+            height: 32px;
+
+            background: #181818;
+
+            border: 1px solid #292929;
+
+            color: #777;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+        }
+
+
+        .promotion-action:hover {
+
+            color: var(--gold);
+
+            border-color: var(--gold);
+
+        }
+
+
+        .promotion-delete:hover {
+
+            color: #e74c3c;
+
+            border-color: #e74c3c;
+
+        }
+
+
+
+        /* =========================================
+           EMPTY STATE
+        ========================================= */
+
+        .empty-promotions {
+
+            text-align: center;
+
+            padding: 70px 20px !important;
+
+            color: #555;
+
+        }
+
+
+        .empty-promotions i {
+
+            color: var(--gold);
+
+            font-size: 38px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .empty-promotions h3 {
+
+            color: #777;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .empty-promotions p {
+
+            font-size: 9px;
+
+        }
+
+
+
+        /* =========================================
+           MODAL
+        ========================================= */
+
+        .promotion-modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0,0,0,.82);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 3000;
+
+            backdrop-filter: blur(5px);
+
+        }
+
+
+        .promotion-modal.show {
+
+            display: flex;
+
+        }
+
+
+        .promotion-modal-box {
+
+            width: 100%;
+
+            max-width: 700px;
+
+            max-height: 92vh;
+
+            overflow-y: auto;
+
+            background: #101010;
+
+            border: 1px solid #333;
+
+            padding: 30px;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,.5);
+
+        }
+
+
+        .promotion-modal-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .promotion-modal-header span {
+
+            color: var(--gold);
+
+            font-size: 8px;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .promotion-modal-header h2 {
+
+            font-family: 'Cinzel', serif;
+
+            margin-top: 6px;
+
+        }
+
+
+        .close-promotion-modal {
+
+            background: transparent;
+
+            border: none;
+
+            color: #777;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            width: 35px;
+
+            height: 35px;
+
+        }
+
+
+        .close-promotion-modal:hover {
+
+            color: var(--gold);
+
+        }
+
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .promotion-form-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+
+        }
+
+
+        .promotion-form-group {
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .promotion-form-group.full {
+
+            grid-column: 1 / -1;
+
+        }
+
+
+        .promotion-form-group label {
+
+            display: block;
+
+            color: #888;
+
+            font-size: 9px;
+
+            margin-bottom: 8px;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .promotion-form-group input,
+
+        .promotion-form-group select,
+
+        .promotion-form-group textarea {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            background: #171717;
+
+            border: 1px solid #292929;
+
+            color: white;
+
+            padding: 13px;
+
+            outline: none;
+
+            font-family: inherit;
+
+        }
+
+
+        .promotion-form-group input:focus,
+
+        .promotion-form-group select:focus,
+
+        .promotion-form-group textarea:focus {
+
+            border-color: var(--gold);
+
+        }
+
+
+        .promotion-form-group textarea {
+
+            min-height: 90px;
+
+            resize: vertical;
+
+        }
+
+
+        .form-help {
+
+            color: #444;
+
+            font-size: 7px;
+
+            margin-top: 6px;
+
+        }
+
+
+
+        /* =========================================
+           PRODUCT CHECKBOXES
+        ========================================= */
+
+        .product-selector {
+
+            background: #171717;
+
+            border: 1px solid #292929;
+
+            max-height: 180px;
+
+            overflow-y: auto;
+
+            padding: 8px;
+
+        }
+
+
+        .product-option {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 10px;
+
+            border-bottom: 1px solid #222;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+        }
+
+
+        .product-option:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .product-option:hover {
+
+            background: #202020;
+
+        }
+
+
+        .product-option input {
+
+            width: 16px !important;
+
+            height: 16px;
+
+            accent-color: var(--gold);
+
+            cursor: pointer;
+
+        }
+
+
+        .product-option-name {
+
+            color: #bbb;
+
+            font-size: 9px;
+
+            flex: 1;
+
+        }
+
+
+        .product-option-price {
+
+            color: #666;
+
+            font-size: 8px;
+
+        }
+
+
+        .no-products {
+
+            color: #555;
+
+            text-align: center;
+
+            padding: 25px 10px;
+
+            font-size: 9px;
+
+        }
+
+
+
+        /* =========================================
+           MODAL ACTIONS
+        ========================================= */
+
+        .promotion-modal-actions {
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .cancel-promotion-btn {
+
+            background: #191919;
+
+            border: 1px solid #292929;
+
+            color: #888;
+
+            padding: 13px 20px;
+
+            cursor: pointer;
+
+        }
+
+
+        .cancel-promotion-btn:hover {
+
+            color: #ddd;
+
+            border-color: #444;
+
+        }
+
+
+        .save-promotion-btn {
+
+            background: var(--gold);
+
+            border: none;
+
+            color: #000;
+
+            padding: 13px 25px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+        }
+
+
+        .save-promotion-btn:hover {
+
+            background: var(--gold-light);
+
+        }
+
+
+
+        /* =========================================
+           TOAST
+        ========================================= */
+
+        .toast {
+
+            position: fixed;
+
+            right: 25px;
+
+            bottom: 25px;
+
+            background: #171717;
+
+            border: 1px solid var(--gold);
+
+            color: #ddd;
+
+            padding: 14px 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 10px;
+
+            transform: translateY(100px);
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: .3s;
+
+            z-index: 5000;
+
+        }
+
+
+        .toast.show {
+
+            transform: translateY(0);
+
+            opacity: 1;
+
+        }
+
+
+        .toast i {
+
+            color: var(--gold);
+
+        }
+
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            .promotion-summary {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .promotions-page {
+
+                padding: 20px 15px;
+
+            }
+
+
+            .promotions-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+
+            }
+
+
+            .add-promotion-btn {
+
+                width: 100%;
+
+            }
+
+
+            .promotion-tools {
+
+                flex-direction: column;
+
+            }
+
+
+            .promotion-search {
+
+                max-width: none;
+
+                width: 100%;
+
+            }
+
+
+            .promotion-filter {
+
+                width: 100%;
+
+            }
+
+
+            .promotions-table-card {
+
+                padding: 12px;
+
+            }
+
+
+            .promotion-form-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .promotion-form-group.full {
+
+                grid-column: auto;
+
+            }
+
+
+            .promotion-modal {
+
+                padding: 10px;
+
+            }
+
+
+            .promotion-modal-box {
+
+                padding: 20px;
+
+                max-height: 94vh;
+
+            }
+
+
+            .promotion-modal-actions {
+
+                flex-direction: column-reverse;
+
+            }
+
+
+            .cancel-promotion-btn,
+
+            .save-promotion-btn {
+
+                width: 100%;
+
+            }
+
+
+            .toast {
+
+                left: 15px;
+
+                right: 15px;
+
+                bottom: 15px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+    <div class="sidebar-brand">
+
+        <div class="brand-crown">
+
+            <i class="fa-solid fa-crown"></i>
+
+        </div>
+
+        <div>
+
+            <h2>NASSAH</h2>
+
+            <span>CONCEPT</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="sidebar-menu">
+
+        <p class="menu-label">
+            MAIN MENU
+        </p>
+
+
+        <a
+            href="index.html"
+            class="menu-item"
+        >
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <a
+            href="products.html"
+            class="menu-item"
+        >
+
+            <i class="fa-solid fa-box-open"></i>
+
+            <span>Products</span>
+
+        </a>
+
+
+        <a
+            href="orders.html"
+            class="menu-item"
+        >
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span>Orders</span>
+
+        </a>
+
+
+        <a
+            href="customers.html"
+            class="menu-item"
+        >
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>Customers</span>
+
+        </a>
+
+
+        <p class="menu-label">
+            MANAGEMENT
+        </p>
+
+
+        <a
+            href="promotions.html"
+            class="menu-item active"
+        >
+
+            <i class="fa-solid fa-tags"></i>
+
+            <span>Promotions</span>
+
+        </a>
+
+
+        <a
+            href="inventory.html"
+            class="menu-item"
+        >
+
+            <i class="fa-solid fa-warehouse"></i>
+
+            <span>Inventory</span>
+
+        </a>
+
+
+        <a
+            href="analytics.html"
+            class="menu-item"
+        >
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <span>Analytics</span>
+
+        </a>
+
+
+        <p class="menu-label">
+            SYSTEM
+        </p>
+
+
+        <a
+            href="settings.html"
+            class="menu-item"
+        >
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+
+        </a>
+
+
+        <button
+            class="menu-item logout"
+            onclick="logout()"
+        >
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+        >
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+        <div class="page-location">
+
+            <span>Management</span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+            <strong>Promotions</strong>
+
+        </div>
+
+
+        <div class="topbar-actions">
+
+            <button class="topbar-icon">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </button>
+
+
+            <button
+                class="topbar-icon notification"
+            >
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span></span>
+
+            </button>
+
+
+            <div class="topbar-profile">
+
+                <div class="admin-avatar">
+                    A
+                </div>
+
+                <div class="profile-name">
+
+                    <strong>Admin</strong>
+
+                    <small>
+                        Super Admin
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         PROMOTIONS CONTENT
+    ========================================= -->
+
+    <section class="promotions-page">
+
+
+        <!-- HEADER -->
+
+        <div class="promotions-header">
+
+            <div>
+
+                <span>
+                    MARKETING MANAGEMENT
+                </span>
+
+                <h1>
+                    Promotions
+                </h1>
+
+            </div>
+
+
+            <button
+                class="add-promotion-btn"
+                onclick="openPromotionModal()"
+            >
+
+                <i class="fa-solid fa-plus"></i>
+
+                CREATE PROMOTION
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =====================================
+             SUMMARY
+        ====================================== -->
+
+        <div class="promotion-summary">
+
+
+            <div class="promotion-summary-card">
+
+                <div class="promotion-summary-icon">
+
+                    <i class="fa-solid fa-tags"></i>
+
+                </div>
+
+                <p>
+                    TOTAL PROMOTIONS
+                </p>
+
+                <h2 id="totalPromotions">
+                    0
+                </h2>
+
+            </div>
+
+
+            <div class="promotion-summary-card">
+
+                <div class="promotion-summary-icon">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                </div>
+
+                <p>
+                    ACTIVE
+                </p>
+
+                <h2 id="activePromotions">
+                    0
+                </h2>
+
+            </div>
+
+
+            <div class="promotion-summary-card">
+
+                <div class="promotion-summary-icon">
+
+                    <i class="fa-solid fa-calendar"></i>
+
+                </div>
+
+                <p>
+                    SCHEDULED
+                </p>
+
+                <h2 id="scheduledPromotions">
+                    0
+                </h2>
+
+            </div>
+
+
+            <div class="promotion-summary-card">
+
+                <div class="promotion-summary-icon">
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                </div>
+
+                <p>
+                    EXPIRED
+                </p>
+
+                <h2 id="expiredPromotions">
+                    0
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             SEARCH + FILTER
+        ====================================== -->
+
+        <div class="promotion-tools">
+
+
+            <div class="promotion-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="promotionSearch"
+                    placeholder="Search promotions..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <select
+                class="promotion-filter"
+                id="promotionStatusFilter"
+            >
+
+                <option value="all">
+                    All Status
+                </option>
+
+                <option value="active">
+                    Active
+                </option>
+
+                <option value="scheduled">
+                    Scheduled
+                </option>
+
+                <option value="expired">
+                    Expired
+                </option>
+
+                <option value="disabled">
+                    Disabled
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- =====================================
+             TABLE
+        ====================================== -->
+
+        <div class="promotions-table-card">
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                PROMOTION
+                            </th>
+
+                            <th>
+                                DISCOUNT
+                            </th>
+
+                            <th>
+                                PRODUCTS
+                            </th>
+
+                            <th>
+                                START
+                            </th>
+
+                            <th>
+                                END
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                            <th>
+                                ACTIONS
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="promotionsTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================
+     PROMOTION MODAL
+========================================= -->
+
+<div
+    class="promotion-modal"
+    id="promotionModal"
+>
+
+    <div class="promotion-modal-box">
+
+
+        <div class="promotion-modal-header">
+
+            <div>
+
+                <span>
+                    PROMOTION MANAGEMENT
+                </span>
+
+                <h2 id="promotionModalTitle">
+                    Create Promotion
+                </h2>
+
+            </div>
+
+
+            <button
+                class="close-promotion-modal"
+                type="button"
+                onclick="closePromotionModal()"
+            >
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <form id="promotionForm">
+
+
+            <!-- EDIT INDEX -->
+
+            <input
+                type="hidden"
+                id="promotionEditIndex"
+            >
+
+
+            <div class="promotion-form-grid">
+
+
+                <!-- NAME -->
+
+                <div class="promotion-form-group full">
+
+                    <label>
+                        PROMOTION NAME
+                    </label>
+
+                    <input
+                        type="text"
+                        id="promotionName"
+                        placeholder="Weekend Luxury Sale"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- DISCOUNT -->
+
+                <div class="promotion-form-group">
+
+                    <label>
+                        DISCOUNT (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="promotionDiscount"
+                        placeholder="20"
+                        min="1"
+                        max="100"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- STATUS -->
+
+                <div class="promotion-form-group">
+
+                    <label>
+                        STATUS
+                    </label>
+
+                    <select id="promotionStatus">
+
+                        <option value="active">
+                            Active
+                        </option>
+
+                        <option value="scheduled">
+                            Scheduled
+                        </option>
+
+                        <option value="disabled">
+                            Disabled
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- START -->
+
+                <div class="promotion-form-group">
+
+                    <label>
+                        START DATE
+                    </label>
+
+                    <input
+                        type="date"
+                        id="promotionStart"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- END -->
+
+                <div class="promotion-form-group">
+
+                    <label>
+                        END DATE
+                    </label>
+
+                    <input
+                        type="date"
+                        id="promotionEnd"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- PRODUCTS -->
+
+                <div class="promotion-form-group full">
+
+                    <label>
+                        APPLY TO PRODUCTS
+                    </label>
+
+
+                    <div
+                        class="product-selector"
+                        id="productSelector"
+                    >
+
+                    </div>
+
+
+                    <div class="form-help">
+
+                        Select the products that should receive
+                        this promotion.
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="promotion-form-group full">
+
+                    <label>
+                        DESCRIPTION
+                    </label>
+
+                    <textarea
+                        id="promotionDescription"
+                        placeholder="Describe this promotion..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ACTIONS -->
+
+            <div class="promotion-modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-promotion-btn"
+                    onclick="closePromotionModal()"
+                >
+
+                    CANCEL
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-promotion-btn"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    SAVE PROMOTION
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     TOAST
+========================================= -->
+
+<div
+    class="toast"
+    id="toast"
+>
+
+    <i class="fa-solid fa-check"></i>
+
+    <span id="toastMessage">
+        Promotion saved successfully.
+    </span>
+
+</div>
+
+
+
+<script>
+
+/* =========================================
+   ADMIN PROTECTION
+========================================= */
+
+if (
+    localStorage.getItem(
+        "nassahAdminLoggedIn"
+    ) !== "true"
+) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+
+/* =========================================
+   PROMOTION STORAGE
+========================================= */
+
+function getPromotions() {
+
+    try {
+
+        const stored =
+            localStorage.getItem(
+                "nassahPromotions"
+            );
+
+        if (!stored) {
+
+            return [];
+
+        }
+
+        const promotions =
+            JSON.parse(stored);
+
+        return Array.isArray(promotions)
+            ? promotions
+            : [];
+
+    } catch (error) {
+
+        console.error(
+            "Promotion storage error:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+function savePromotions(promotions) {
+
+    localStorage.setItem(
+        "nassahPromotions",
+        JSON.stringify(promotions)
+    );
+
+}
+
+
+
+/* =========================================
+   PRODUCT STORAGE
+========================================= */
+
+function getProducts() {
+
+    try {
+
+        const stored =
+            localStorage.getItem(
+                "nassahProducts"
+            );
+
+        if (!stored) {
+
+            return [];
+
+        }
+
+        const products =
+            JSON.parse(stored);
+
+        return Array.isArray(products)
+            ? products
+            : [];
+
+    } catch (error) {
+
+        console.error(
+            "Product storage error:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+
+/* =========================================
+   GENERATE PROMOTION ID
+========================================= */
+
+function generatePromotionId(
+    promotions
+) {
+
+    let number =
+        promotions.length + 1;
+
+
+    let id =
+        "PROMO-" +
+        String(number).padStart(3, "0");
+
+
+    while (
+        promotions.some(
+            promotion =>
+                promotion.id === id
+        )
+    ) {
+
+        number++;
+
+        id =
+            "PROMO-" +
+            String(number).padStart(3, "0");
+
+    }
+
+
+    return id;
+
+}
+
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+
+/* =========================================
+   CAPITALIZE
+========================================= */
+
+function capitalize(text) {
+
+    if (!text) return "";
+
+    return (
+        text.charAt(0).toUpperCase()
+        +
+        text.slice(1)
+    );
+
+}
+
+
+
+/* =========================================
+   DATE FORMAT
+========================================= */
+
+function formatDate(date) {
+
+    if (!date) {
+
+        return "—";
+
+    }
+
+
+    const d =
+        new Date(date + "T00:00:00");
+
+
+    if (
+        isNaN(
+            d.getTime()
+        )
+    ) {
+
+        return "—";
+
+    }
+
+
+    return d.toLocaleDateString(
+        "en-NG",
+        {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   GET REAL PROMOTION STATUS
+========================================= */
+
+function getPromotionStatus(
+    promotion
+) {
+
+    if (
+        promotion.status === "disabled"
+    ) {
+
+        return "disabled";
+
+    }
+
+
+    if (
+        !promotion.start ||
+        !promotion.end
+    ) {
+
+        return "scheduled";
+
+    }
+
+
+    const today =
+        new Date();
+
+    today.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    const start =
+        new Date(
+            promotion.start +
+            "T00:00:00"
+        );
+
+
+    const end =
+        new Date(
+            promotion.end +
+            "T23:59:59"
+        );
+
+
+    if (
+        today < start
+    ) {
+
+        return "scheduled";
+
+    }
+
+
+    if (
+        today > end
+    ) {
+
+        return "expired";
+
+    }
+
+
+    return "active";
+
+}
+
+
+
+/* =========================================
+   STATUS CLASS
+========================================= */
+
+function getPromotionStatusClass(
+    status
+) {
+
+    switch (status) {
+
+        case "active":
+
+            return "status-active";
+
+
+        case "scheduled":
+
+            return "status-scheduled";
+
+
+        case "expired":
+
+            return "status-expired";
+
+
+        case "disabled":
+
+            return "status-disabled";
+
+
+        default:
+
+            return "status-expired";
+
+    }
+
+}
+
+
+
+/* =========================================
+   PRODUCTS TEXT
+========================================= */
+
+function getPromotionProducts(
+    promotion
+) {
+
+    if (
+        !promotion.productIds ||
+        !Array.isArray(
+            promotion.productIds
+        )
+    ) {
+
+        return "All products";
+
+    }
+
+
+    if (
+        promotion.productIds.length === 0
+    ) {
+
+        return "All products";
+
+    }
+
+
+    const products =
+        getProducts();
+
+
+    const selected =
+        products.filter(
+            product =>
+                promotion.productIds.includes(
+                    product.id
+                )
+        );
+
+
+    if (
+        selected.length === 0
+    ) {
+
+        return "Selected products";
+
+    }
+
+
+    if (
+        selected.length === 1
+    ) {
+
+        return escapeHTML(
+            selected[0].name
+        );
+
+    }
+
+
+    return (
+        selected.length +
+        " products"
+    );
+
+}
+
+
+
+/* =========================================
+   UPDATE SUMMARY
+========================================= */
+
+function updatePromotionSummary(
+    promotions
+) {
+
+    const active =
+        promotions.filter(
+            promotion =>
+                getPromotionStatus(
+                    promotion
+                ) === "active"
+        ).length;
+
+
+    const scheduled =
+        promotions.filter(
+            promotion =>
+                getPromotionStatus(
+                    promotion
+                ) === "scheduled"
+        ).length;
+
+
+    const expired =
+        promotions.filter(
+            promotion =>
+                getPromotionStatus(
+                    promotion
+                ) === "expired"
+        ).length;
+
+
+    document.getElementById(
+        "totalPromotions"
+    ).textContent =
+        promotions.length;
+
+
+    document.getElementById(
+        "activePromotions"
+    ).textContent =
+        active;
+
+
+    document.getElementById(
+        "scheduledPromotions"
+    ).textContent =
+        scheduled;
+
+
+    document.getElementById(
+        "expiredPromotions"
+    ).textContent =
+        expired;
+
+}
+
+
+
+/* =========================================
+   RENDER PROMOTIONS
+========================================= */
+
+function renderPromotions() {
+
+    const promotions =
+        getPromotions();
+
+
+    const table =
+        document.getElementById(
+            "promotionsTable"
+        );
+
+
+    const search =
+        document.getElementById(
+            "promotionSearch"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const statusFilter =
+        document.getElementById(
+            "promotionStatusFilter"
+        ).value;
+
+
+    table.innerHTML = "";
+
+
+    updatePromotionSummary(
+        promotions
+    );
+
+
+    const filtered =
+        promotions.filter(
+            promotion => {
+
+                const status =
+                    getPromotionStatus(
+                        promotion
+                    );
+
+
+                const searchText = `
+
+                    ${promotion.id || ""}
+
+                    ${promotion.name || ""}
+
+                    ${promotion.description || ""}
+
+                `.toLowerCase();
+
+
+                const matchesSearch =
+                    searchText.includes(
+                        search
+                    );
+
+
+                const matchesStatus =
+                    statusFilter === "all" ||
+                    status === statusFilter;
+
+
+                return (
+                    matchesSearch &&
+                    matchesStatus
+                );
+
+            }
+        );
+
+
+
+    /* EMPTY */
+
+    if (
+        filtered.length === 0
+    ) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="7"
+                    class="empty-promotions"
+                >
+
+                    <i
+                        class="fa-solid fa-tags"
+                    ></i>
+
+                    <h3>
+                        No Promotions Yet
+                    </h3>
+
+                    <p>
+                        Create your first promotion
+                        to start offering discounts.
+                    </p>
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    /* DISPLAY */
+
+    filtered.forEach(
+        promotion => {
+
+            const originalIndex =
+                promotions.indexOf(
+                    promotion
+                );
+
+
+            const status =
+                getPromotionStatus(
+                    promotion
+                );
+
+
+            const statusClass =
+                getPromotionStatusClass(
+                    status
+                );
+
+
+            const products =
+                getPromotionProducts(
+                    promotion
+                );
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <!-- PROMOTION -->
+
+                <td>
+
+                    <div class="promotion-name">
+
+                        <div class="promotion-icon">
+
+                            <i
+                                class="fa-solid fa-tag"
+                            ></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                ${escapeHTML(
+                                    promotion.name
+                                )}
+                            </strong>
+
+                            <small>
+                                ${escapeHTML(
+                                    promotion.id
+                                )}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+
+
+                <!-- DISCOUNT -->
+
+                <td>
+
+                    <span class="discount-value">
+
+                        ${Number(
+                            promotion.discount || 0
+                        )}%
+
+                    </span>
+
+                    <span class="discount-type">
+                        OFF
+                    </span>
+
+                </td>
+
+
+
+                <!-- PRODUCTS -->
+
+                <td>
+
+                    <span class="products-count">
+
+                        <i
+                            class="fa-solid fa-box"
+                        ></i>
+
+                        ${products}
+
+                    </span>
+
+                </td>
+
+
+
+                <!-- START -->
+
+                <td>
+
+                    <span class="promotion-date">
+
+                        ${formatDate(
+                            promotion.start
+                        )}
+
+                    </span>
+
+                    <small>
+                        Start date
+                    </small>
+
+                </td>
+
+
+
+                <!-- END -->
+
+                <td>
+
+                    <span class="promotion-date">
+
+                        ${formatDate(
+                            promotion.end
+                        )}
+
+                    </span>
+
+                    <small>
+                        End date
+                    </small>
+
+                </td>
+
+
+
+                <!-- STATUS -->
+
+                <td>
+
+                    <span
+                        class="
+                            promotion-status
+                            ${statusClass}
+                        "
+                    >
+
+                        ${capitalize(
+                            status
+                        )}
+
+                    </span>
+
+                </td>
+
+
+
+                <!-- ACTIONS -->
+
+                <td>
+
+                    <div class="promotion-actions">
+
+
+                        <button
+                            class="promotion-action"
+                            onclick="
+                                editPromotion(
+                                    ${originalIndex}
+                                )
+                            "
+                            title="Edit Promotion"
+                        >
+
+                            <i
+                                class="fa-solid fa-pen"
+                            ></i>
+
+                        </button>
+
+
+
+                        <button
+                            class="
+                                promotion-action
+                                promotion-delete
+                            "
+                            onclick="
+                                deletePromotion(
+                                    ${originalIndex}
+                                )
+                            "
+                            title="Delete Promotion"
+                        >
+
+                            <i
+                                class="fa-solid fa-trash"
+                            ></i>
+
+                        </button>
+
+
+                    </div>
+
+                </td>
+
+            `;
+
+
+            table.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   LOAD PRODUCT CHECKBOXES
+========================================= */
+
+function renderProductSelector(
+    selectedIds = []
+) {
+
+    const container =
+        document.getElementById(
+            "productSelector"
+        );
+
+
+    const products =
+        getProducts();
+
+
+    container.innerHTML = "";
+
+
+    if (
+        products.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="no-products">
+
+                <i
+                    class="fa-solid fa-box-open"
+                ></i>
+
+                <br><br>
+
+                No products available.
+
+                <br>
+
+                Add products from the
+                Products page first.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    products.forEach(
+        product => {
+
+            const option =
+                document.createElement(
+                    "label"
+                );
+
+
+            option.className =
+                "product-option";
+
+
+            const checked =
+                selectedIds.includes(
+                    product.id
+                )
+                ? "checked"
+                : "";
+
+
+            option.innerHTML = `
+
+                <input
+                    type="checkbox"
+                    value="${escapeHTML(
+                        product.id
+                    )}"
+                    ${checked}
+                >
+
+                <span class="product-option-name">
+
+                    ${escapeHTML(
+                        product.name
+                    )}
+
+                </span>
+
+                <span class="product-option-price">
+
+                    ₦${Number(
+                        product.price || 0
+                    ).toLocaleString(
+                        "en-NG"
+                    )}
+
+                </span>
+
+            `;
+
+
+            container.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   OPEN MODAL
+========================================= */
+
+function openPromotionModal(
+    index = null
+) {
+
+    const modal =
+        document.getElementById(
+            "promotionModal"
+        );
+
+
+    const form =
+        document.getElementById(
+            "promotionForm"
+        );
+
+
+    form.reset();
+
+
+    document.getElementById(
+        "promotionEditIndex"
+    ).value = "";
+
+
+    document.getElementById(
+        "promotionModalTitle"
+    ).textContent =
+        "Create Promotion";
+
+
+    renderProductSelector(
+        []
+    );
+
+
+
+    /* DEFAULT DATES */
+
+    const today =
+        new Date();
+
+
+    const tomorrow =
+        new Date();
+
+
+    tomorrow.setDate(
+        today.getDate() + 7
+    );
+
+
+    document.getElementById(
+        "promotionStart"
+    ).value =
+        formatInputDate(
+            today
+        );
+
+
+    document.getElementById(
+        "promotionEnd"
+    ).value =
+        formatInputDate(
+            tomorrow
+        );
+
+
+
+    /* EDIT */
+
+    if (
+        index !== null
+    ) {
+
+        const promotions =
+            getPromotions();
+
+
+        const promotion =
+            promotions[index];
+
+
+        if (!promotion) return;
+
+
+        document.getElementById(
+            "promotionEditIndex"
+        ).value =
+            index;
+
+
+        document.getElementById(
+            "promotionModalTitle"
+        ).textContent =
+            "Edit Promotion";
+
+
+        document.getElementById(
+            "promotionName"
+        ).value =
+            promotion.name || "";
+
+
+        document.getElementById(
+            "promotionDiscount"
+        ).value =
+            promotion.discount || "";
+
+
+        document.getElementById(
+            "promotionStatus"
+        ).value =
+            promotion.status || "active";
+
+
+        document.getElementById(
+            "promotionStart"
+        ).value =
+            promotion.start || "";
+
+
+        document.getElementById(
+            "promotionEnd"
+        ).value =
+            promotion.end || "";
+
+
+        document.getElementById(
+            "promotionDescription"
+        ).value =
+            promotion.description || "";
+
+
+        renderProductSelector(
+            promotion.productIds || []
+        );
+
+    }
+
+
+    modal.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            document.getElementById(
+                "promotionName"
+            ).focus();
+
+        },
+        100
+    );
+
+}
+
+
+
+/* =========================================
+   FORMAT INPUT DATE
+========================================= */
+
+function formatInputDate(
+    date
+) {
+
+    const year =
+        date.getFullYear();
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    return (
+        year +
+        "-" +
+        month +
+        "-" +
+        day
+    );
+
+}
+
+
+
+/* =========================================
+   CLOSE MODAL
+========================================= */
+
+function closePromotionModal() {
+
+    document
+        .getElementById(
+            "promotionModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+
+/* =========================================
+   SAVE PROMOTION
+========================================= */
+
+document
+    .getElementById(
+        "promotionForm"
+    )
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const promotions =
+                getPromotions();
+
+
+            const editIndex =
+                document.getElementById(
+                    "promotionEditIndex"
+                ).value;
+
+
+            const name =
+                document.getElementById(
+                    "promotionName"
+                ).value.trim();
+
+
+            const discount =
+                Number(
+                    document.getElementById(
+                        "promotionDiscount"
+                    ).value
+                );
+
+
+            const start =
+                document.getElementById(
+                    "promotionStart"
+                ).value;
+
+
+            const end =
+                document.getElementById(
+                    "promotionEnd"
+                ).value;
+
+
+            const status =
+                document.getElementById(
+                    "promotionStatus"
+                ).value;
+
+
+            const description =
+                document.getElementById(
+                    "promotionDescription"
+                ).value.trim();
+
+
+
+            /* VALIDATION */
+
+            if (!name) {
+
+                showToast(
+                    "Please enter a promotion name."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !Number.isFinite(
+                    discount
+                ) ||
+                discount <= 0 ||
+                discount > 100
+            ) {
+
+                showToast(
+                    "Discount must be between 1 and 100%."
+                );
+
+                return;
+
+            }
+
+
+            if (!start || !end) {
+
+                showToast(
+                    "Please select both dates."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                new Date(
+                    end +
+                    "T00:00:00"
+                ) <
+                new Date(
+                    start +
+                    "T00:00:00"
+                )
+            ) {
+
+                showToast(
+                    "End date cannot be before start date."
+                );
+
+                return;
+
+            }
+
+
+
+            /* SELECTED PRODUCTS */
+
+            const selectedCheckboxes =
+                document.querySelectorAll(
+                    "#productSelector input[type='checkbox']:checked"
+                );
+
+
+            const productIds =
+                Array.from(
+                    selectedCheckboxes
+                ).map(
+                    checkbox =>
+                        checkbox.value
+                );
+
+
+
+            /* PROMOTION OBJECT */
+
+            const promotion = {
+
+                id:
+                    editIndex === ""
+                    ? generatePromotionId(
+                        promotions
+                    )
+                    : promotions[
+                        Number(
+                            editIndex
+                        )
+                      ].id,
+
+                name:
+                    name,
+
+                discount:
+                    discount,
+
+                start:
+                    start,
+
+                end:
+                    end,
+
+                status:
+                    status,
+
+                productIds:
+                    productIds,
+
+                description:
+                    description
+
+            };
+
+
+
+            try {
+
+                if (
+                    editIndex === ""
+                ) {
+
+                    promotions.push(
+                        promotion
+                    );
+
+
+                    savePromotions(
+                        promotions
+                    );
+
+
+                    showToast(
+                        "Promotion created successfully."
+                    );
+
+                } else {
+
+                    promotions[
+                        Number(
+                            editIndex
+                        )
+                    ] =
+                        promotion;
+
+
+                    savePromotions(
+                        promotions
+                    );
+
+
+                    showToast(
+                        "Promotion updated successfully."
+                    );
+
+                }
+
+
+                closePromotionModal();
+
+
+                renderPromotions();
+
+            } catch (error) {
+
+                console.error(
+                    "Promotion save error:",
+                    error
+                );
+
+
+                showToast(
+                    "Could not save promotion."
+                );
+
+            }
+
+        }
+    );
+
+
+
+/* =========================================
+   EDIT PROMOTION
+========================================= */
+
+function editPromotion(
+    index
+) {
+
+    openPromotionModal(
+        index
+    );
+
+}
+
+
+
+/* =========================================
+   DELETE PROMOTION
+========================================= */
+
+function deletePromotion(
+    index
+) {
+
+    const promotions =
+        getPromotions();
+
+
+    const promotion =
+        promotions[index];
+
+
+    if (!promotion) return;
+
+
+    const confirmed =
+        confirm(
+            `Delete "${promotion.name}"?\n\nThis action cannot be undone.`
+        );
+
+
+    if (!confirmed) return;
+
+
+    promotions.splice(
+        index,
+        1
+    );
+
+
+    savePromotions(
+        promotions
+    );
+
+
+    renderPromotions();
+
+
+    showToast(
+        "Promotion deleted successfully."
+    );
+
+}
+
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+document
+    .getElementById(
+        "promotionSearch"
+    )
+    .addEventListener(
+        "input",
+        renderPromotions
+    );
+
+
+
+/* =========================================
+   FILTER
+========================================= */
+
+document
+    .getElementById(
+        "promotionStatusFilter"
+    )
+    .addEventListener(
+        "change",
+        renderPromotions
+    );
+
+
+
+/* =========================================
+   CLOSE MODAL OUTSIDE
+========================================= */
+
+document
+    .getElementById(
+        "promotionModal"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closePromotionModal();
+
+            }
+
+        }
+    );
+
+
+
+/* =========================================
+   ESC KEY
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closePromotionModal();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+document
+    .getElementById(
+        "mobileMenu"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            document
+                .getElementById(
+                    "sidebar"
+                )
+                .classList.toggle(
+                    "open"
+                );
+
+        }
+    );
+
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+function logout() {
+
+    localStorage.removeItem(
+        "nassahAdminLoggedIn"
+    );
+
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+
+/* =========================================
+   TOAST
+========================================= */
+
+let toastTimer;
+
+
+function showToast(
+    message
+) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    const toastMessage =
+        document.getElementById(
+            "toastMessage"
+        );
+
+
+    toastMessage.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            3000
+        );
+
+}
+
+
+
+/* =========================================
+   INITIAL LOAD
+========================================= */
+
+renderPromotions();
+
+</script>
+
+</body>
+
+</html>

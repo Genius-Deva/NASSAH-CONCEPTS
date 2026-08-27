@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,10 @@
     >
 
     <style>
+        /* =========================================
+           PRODUCTS PAGE
+        ========================================= */
+
         .products-page {
             padding: 35px;
         }
@@ -45,21 +50,29 @@
             font-size: 10px;
             font-weight: 700;
             cursor: pointer;
+            transition: .3s;
         }
 
         .add-product-btn:hover {
             background: var(--gold-light);
+            transform: translateY(-2px);
         }
+
+        /* =========================================
+           PRODUCT TOOLS
+        ========================================= */
 
         .product-tools {
             display: flex;
             gap: 12px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .search-box {
             flex: 1;
-            max-width: 400px;
+            max-width: 450px;
+            min-width: 220px;
             height: 45px;
             display: flex;
             align-items: center;
@@ -81,13 +94,27 @@
             color: white;
         }
 
+        .search-box input::placeholder {
+            color: #555;
+        }
+
         .filter-select {
+            height: 45px;
             background: var(--card);
             border: 1px solid var(--border);
             color: #888;
             padding: 0 15px;
             outline: none;
+            cursor: pointer;
         }
+
+        .filter-select:focus {
+            border-color: var(--gold);
+        }
+
+        /* =========================================
+           PRODUCT TABLE
+        ========================================= */
 
         .products-table-card {
             background: var(--card);
@@ -95,14 +122,56 @@
             padding: 25px;
         }
 
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            min-width: 850px;
+            border-collapse: collapse;
+        }
+
+        table th {
+            color: #555;
+            font-size: 8px;
+            letter-spacing: 1px;
+            text-align: left;
+            padding: 15px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table td {
+            color: #888;
+            font-size: 10px;
+            padding: 16px 12px;
+            border-bottom: 1px solid #1c1c1c;
+            vertical-align: middle;
+        }
+
+        table tbody tr {
+            transition: .2s;
+        }
+
+        table tbody tr:hover {
+            background: #151515;
+        }
+
+        /* =========================================
+           PRODUCT IMAGE
+        ========================================= */
+
         .product-table-image {
             width: 55px;
             height: 55px;
             background: #191919;
+            border: 1px solid #242424;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .product-table-image img {
@@ -125,6 +194,7 @@
         .product-name strong {
             color: #ddd;
             font-size: 10px;
+            display: block;
         }
 
         .product-name small {
@@ -133,6 +203,15 @@
             margin-top: 5px;
             font-size: 8px;
         }
+
+        .sku-text {
+            color: #444 !important;
+            font-size: 7px !important;
+        }
+
+        /* =========================================
+           STOCK
+        ========================================= */
 
         .stock-good {
             color: #73bd88;
@@ -146,6 +225,37 @@
             color: #d95c5c;
         }
 
+        /* =========================================
+           BADGES
+        ========================================= */
+
+        .product-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 8px;
+            font-size: 7px;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+
+        .featured-badge {
+            color: var(--gold);
+            background: rgba(212, 175, 55, .08);
+            border: 1px solid rgba(212, 175, 55, .2);
+        }
+
+        .discount-badge {
+            color: #73bd88;
+            background: rgba(115, 189, 136, .07);
+            border: 1px solid rgba(115, 189, 136, .15);
+            margin-left: 5px;
+        }
+
+        /* =========================================
+           ACTION BUTTONS
+        ========================================= */
+
         .action-buttons {
             display: flex;
             gap: 7px;
@@ -158,6 +268,7 @@
             border: 1px solid #292929;
             color: #777;
             cursor: pointer;
+            transition: .2s;
         }
 
         .action-btn:hover {
@@ -170,17 +281,20 @@
             border-color: #e74c3c;
         }
 
-        /* MODAL */
+        /* =========================================
+           MODAL
+        ========================================= */
 
         .modal {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,.8);
+            background: rgba(0, 0, 0, .82);
             display: none;
             align-items: center;
             justify-content: center;
             padding: 20px;
             z-index: 2000;
+            backdrop-filter: blur(5px);
         }
 
         .modal.show {
@@ -189,12 +303,13 @@
 
         .modal-box {
             width: 100%;
-            max-width: 650px;
+            max-width: 700px;
             max-height: 90vh;
             overflow-y: auto;
             background: #101010;
             border: 1px solid #333;
             padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.5);
         }
 
         .modal-header {
@@ -206,19 +321,26 @@
 
         .modal-header h2 {
             font-family: 'Cinzel', serif;
+            margin-top: 6px;
         }
 
         .close-modal {
             background: transparent;
             border: none;
             color: #777;
-            font-size: 20px;
+            font-size: 25px;
             cursor: pointer;
+            width: 35px;
+            height: 35px;
         }
 
         .close-modal:hover {
             color: var(--gold);
         }
+
+        /* =========================================
+           FORM
+        ========================================= */
 
         .form-grid {
             display: grid;
@@ -246,11 +368,17 @@
         .form-group select,
         .form-group textarea {
             width: 100%;
+            box-sizing: border-box;
             background: #171717;
             border: 1px solid #292929;
             color: white;
             padding: 13px;
             outline: none;
+            font-family: inherit;
+        }
+
+        .form-group select {
+            cursor: pointer;
         }
 
         .form-group textarea {
@@ -264,28 +392,44 @@
             border-color: var(--gold);
         }
 
+        /* =========================================
+           IMAGE PREVIEW
+        ========================================= */
+
         .image-preview {
             width: 100%;
-            height: 140px;
+            height: 180px;
+            background: #151515;
             border: 1px dashed #333;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 10px;
             overflow: hidden;
+            position: relative;
         }
 
         .image-preview img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             display: none;
         }
 
         .image-preview i {
             color: #444;
-            font-size: 30px;
+            font-size: 35px;
         }
+
+        .image-help {
+            color: #444;
+            font-size: 8px;
+            margin-top: 7px;
+        }
+
+        /* =========================================
+           MODAL ACTIONS
+        ========================================= */
 
         .modal-actions {
             display: flex;
@@ -302,6 +446,11 @@
             cursor: pointer;
         }
 
+        .cancel-btn:hover {
+            color: #ddd;
+            border-color: #444;
+        }
+
         .save-btn {
             background: var(--gold);
             border: none;
@@ -309,15 +458,20 @@
             padding: 13px 25px;
             font-weight: 700;
             cursor: pointer;
+            transition: .2s;
         }
 
         .save-btn:hover {
             background: var(--gold-light);
         }
 
+        /* =========================================
+           EMPTY STATE
+        ========================================= */
+
         .empty-products {
             text-align: center;
-            padding: 60px;
+            padding: 70px 20px !important;
             color: #555;
         }
 
@@ -326,6 +480,48 @@
             font-size: 35px;
             margin-bottom: 15px;
         }
+
+        .empty-products strong {
+            display: block;
+            color: #777;
+            margin-bottom: 6px;
+        }
+
+        /* =========================================
+           TOAST
+        ========================================= */
+
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #171717;
+            border: 1px solid var(--gold);
+            color: #ddd;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+            z-index: 5000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            color: var(--gold);
+        }
+
+        /* =========================================
+           MOBILE
+        ========================================= */
 
         @media (max-width: 700px) {
 
@@ -339,12 +535,25 @@
                 gap: 15px;
             }
 
+            .add-product-btn {
+                width: 100%;
+            }
+
             .product-tools {
                 flex-direction: column;
             }
 
             .search-box {
                 max-width: none;
+                width: 100%;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+
+            .products-table-card {
+                padding: 12px;
             }
 
             .form-grid {
@@ -355,8 +564,28 @@
                 grid-column: auto;
             }
 
+            .modal {
+                padding: 10px;
+            }
+
             .modal-box {
                 padding: 20px;
+                max-height: 94vh;
+            }
+
+            .modal-actions {
+                flex-direction: column-reverse;
+            }
+
+            .cancel-btn,
+            .save-btn {
+                width: 100%;
+            }
+
+            .toast {
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
             }
         }
     </style>
@@ -364,9 +593,14 @@
 
 <body>
 
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
 <aside class="sidebar" id="sidebar">
 
     <div class="sidebar-brand">
+
         <div class="brand-crown">
             <i class="fa-solid fa-crown"></i>
         </div>
@@ -375,6 +609,7 @@
             <h2>NASSAH</h2>
             <span>CONCEPT</span>
         </div>
+
     </div>
 
     <div class="sidebar-menu">
@@ -435,6 +670,10 @@
 </aside>
 
 
+<!-- =========================================
+     MAIN CONTENT
+========================================= -->
+
 <main class="main-content">
 
     <header class="topbar">
@@ -462,7 +701,9 @@
 
             <div class="topbar-profile">
 
-                <div class="admin-avatar">A</div>
+                <div class="admin-avatar">
+                    A
+                </div>
 
                 <div class="profile-name">
                     <strong>Admin</strong>
@@ -478,12 +719,16 @@
 
     <section class="products-page">
 
+        <!-- HEADER -->
+
         <div class="products-header">
 
             <div>
+
                 <span>CATALOG MANAGEMENT</span>
 
                 <h1>Products</h1>
+
             </div>
 
             <button
@@ -497,6 +742,8 @@
         </div>
 
 
+        <!-- SEARCH + FILTER -->
+
         <div class="product-tools">
 
             <div class="search-box">
@@ -507,6 +754,7 @@
                     type="search"
                     id="searchProducts"
                     placeholder="Search watches..."
+                    autocomplete="off"
                 >
 
             </div>
@@ -562,6 +810,8 @@
         </div>
 
 
+        <!-- PRODUCTS TABLE -->
+
         <div class="products-table-card">
 
             <div class="table-wrapper">
@@ -573,24 +823,17 @@
                         <tr>
 
                             <th>PRODUCT</th>
-
                             <th>CATEGORY</th>
-
                             <th>PRICE</th>
-
                             <th>STOCK</th>
-
-                            <th>FEATURED</th>
-
+                            <th>STATUS</th>
                             <th>ACTIONS</th>
 
                         </tr>
 
                     </thead>
 
-                    <tbody id="productsTable">
-
-                    </tbody>
+                    <tbody id="productsTable"></tbody>
 
                 </table>
 
@@ -603,7 +846,9 @@
 </main>
 
 
-<!-- ADD PRODUCT MODAL -->
+<!-- =========================================
+     PRODUCT MODAL
+========================================= -->
 
 <div class="modal" id="productModal">
 
@@ -630,6 +875,7 @@
             <button
                 class="close-modal"
                 onclick="closeProductModal()"
+                type="button"
             >
                 ×
             </button>
@@ -639,11 +885,17 @@
 
         <form id="productForm">
 
-            <input type="hidden" id="editIndex">
+            <!-- EDIT INDEX -->
+
+            <input
+                type="hidden"
+                id="editIndex"
+            >
 
 
             <div class="form-grid">
 
+                <!-- IMAGE -->
 
                 <div class="form-group full">
 
@@ -671,8 +923,14 @@
                         accept="image/*"
                     >
 
+                    <div class="image-help">
+                        JPG, PNG or WEBP recommended.
+                    </div>
+
                 </div>
 
+
+                <!-- PRODUCT NAME -->
 
                 <div class="form-group">
 
@@ -690,6 +948,8 @@
                 </div>
 
 
+                <!-- PRICE -->
+
                 <div class="form-group">
 
                     <label>
@@ -706,6 +966,8 @@
 
                 </div>
 
+
+                <!-- CATEGORY -->
 
                 <div class="form-group">
 
@@ -732,6 +994,8 @@
                 </div>
 
 
+                <!-- STOCK -->
+
                 <div class="form-group">
 
                     <label>
@@ -749,6 +1013,8 @@
                 </div>
 
 
+                <!-- DISCOUNT -->
+
                 <div class="form-group">
 
                     <label>
@@ -761,10 +1027,13 @@
                         placeholder="0"
                         min="0"
                         max="100"
+                        value="0"
                     >
 
                 </div>
 
+
+                <!-- FEATURED -->
 
                 <div class="form-group">
 
@@ -787,6 +1056,8 @@
                 </div>
 
 
+                <!-- DESCRIPTION -->
+
                 <div class="form-group full">
 
                     <label>
@@ -800,9 +1071,10 @@
 
                 </div>
 
-
             </div>
 
+
+            <!-- BUTTONS -->
 
             <div class="modal-actions">
 
@@ -818,6 +1090,7 @@
                     type="submit"
                     class="save-btn"
                 >
+                    <i class="fa-solid fa-check"></i>
                     SAVE PRODUCT
                 </button>
 
@@ -830,134 +1103,328 @@
 </div>
 
 
+<!-- =========================================
+     TOAST
+========================================= -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    <i class="fa-solid fa-check"></i>
+    <span id="toastMessage">
+        Product saved successfully.
+    </span>
+</div>
+
+
 <script>
 
-    /* =========================
-       ADMIN PROTECTION
-    ========================= */
+/* =========================================
+   ADMIN PROTECTION
+========================================= */
 
-    if (
-        localStorage.getItem("nassahAdminLoggedIn")
-        !== "true"
-    ) {
-        window.location.href = "login.html";
+if (
+    localStorage.getItem("nassahAdminLoggedIn") !== "true"
+) {
+    window.location.href = "login.html";
+}
+
+
+/* =========================================
+   DEFAULT PRODUCTS
+========================================= */
+
+const defaultProducts = [
+
+    {
+        id: "NAS-001",
+        name: "NASSAH Royal Steel",
+        price: 120000,
+        category: "luxury",
+        stock: 42,
+        discount: 0,
+        featured: true,
+        description: "A premium steel watch designed for timeless elegance.",
+        image: ""
+    },
+
+    {
+        id: "NAS-002",
+        name: "NASSAH Executive",
+        price: 110000,
+        category: "classic",
+        stock: 28,
+        discount: 10,
+        featured: true,
+        description: "A sophisticated classic watch for everyday luxury.",
+        image: ""
+    },
+
+    {
+        id: "NAS-003",
+        name: "NASSAH Gold Elite",
+        price: 250000,
+        category: "luxury",
+        stock: 12,
+        discount: 0,
+        featured: true,
+        description: "An elegant gold-inspired timepiece for special occasions.",
+        image: ""
+    },
+
+    {
+        id: "NAS-004",
+        name: "NASSAH Classic Black",
+        price: 85000,
+        category: "classic",
+        stock: 7,
+        discount: 5,
+        featured: false,
+        description: "A clean black classic watch with a refined appearance.",
+        image: ""
     }
 
-
-    /* =========================
-       PRODUCT STORAGE
-    ========================= */
-
-    const defaultProducts = [
-
-        {
-            name: "NASSAH Royal Steel",
-            price: 120000,
-            category: "luxury",
-            stock: 42,
-            discount: 0,
-            featured: true,
-            image: ""
-        },
-
-        {
-            name: "NASSAH Executive",
-            price: 110000,
-            category: "classic",
-            stock: 28,
-            discount: 10,
-            featured: true,
-            image: ""
-        },
-
-        {
-            name: "NASSAH Gold Elite",
-            price: 250000,
-            category: "luxury",
-            stock: 12,
-            discount: 0,
-            featured: true,
-            image: ""
-        },
-
-        {
-            name: "NASSAH Classic Black",
-            price: 85000,
-            category: "classic",
-            stock: 7,
-            discount: 5,
-            featured: false,
-            image: ""
-        }
-
-    ];
+];
 
 
-    function getProducts() {
+/* =========================================
+   PRODUCT STORAGE
+========================================= */
 
-        const stored =
-            localStorage.getItem("nassahProducts");
+function getProducts() {
 
-        if (!stored) {
+    const stored =
+        localStorage.getItem("nassahProducts");
 
-            localStorage.setItem(
-                "nassahProducts",
-                JSON.stringify(defaultProducts)
-            );
-
-            return defaultProducts;
-
-        }
-
-        return JSON.parse(stored);
-
-    }
-
-
-    function saveProducts(products) {
+    if (!stored) {
 
         localStorage.setItem(
             "nassahProducts",
-            JSON.stringify(products)
+            JSON.stringify(defaultProducts)
         );
+
+        return [...defaultProducts];
 
     }
 
+    try {
 
-    /* =========================
-       DISPLAY PRODUCTS
-    ========================= */
+        const products =
+            JSON.parse(stored);
 
-    function renderProducts() {
+        /*
+            Add missing IDs to old products
+            created by the previous version.
+        */
 
-        const products = getProducts();
+        let changed = false;
 
-        const table =
-            document.getElementById("productsTable");
+        products.forEach((product, index) => {
 
-        const search =
-            document.getElementById("searchProducts")
-                .value
-                .toLowerCase();
+            if (!product.id) {
 
-        const category =
-            document.getElementById("categoryFilter")
-                .value;
+                product.id =
+                    generateProductId(products);
 
-        const stockFilter =
-            document.getElementById("stockFilter")
-                .value;
+                changed = true;
+
+            }
+
+            if (!product.description) {
+
+                product.description = "";
+
+                changed = true;
+
+            }
+
+            if (
+                typeof product.discount !== "number"
+            ) {
+
+                product.discount =
+                    Number(product.discount) || 0;
+
+                changed = true;
+
+            }
+
+            if (
+                typeof product.featured !== "boolean"
+            ) {
+
+                product.featured =
+                    product.featured === true ||
+                    product.featured === "true";
+
+                changed = true;
+
+            }
+
+        });
+
+        if (changed) {
+
+            saveProducts(products);
+
+        }
+
+        return products;
+
+    } catch (error) {
+
+        console.error(
+            "Product storage error:",
+            error
+        );
+
+        localStorage.setItem(
+            "nassahProducts",
+            JSON.stringify(defaultProducts)
+        );
+
+        return [...defaultProducts];
+
+    }
+
+}
 
 
-        table.innerHTML = "";
+function saveProducts(products) {
+
+    localStorage.setItem(
+        "nassahProducts",
+        JSON.stringify(products)
+    );
+
+}
 
 
-        const filtered = products.filter(product => {
+/* =========================================
+   PRODUCT ID
+========================================= */
+
+function generateProductId(products) {
+
+    let number = products.length + 1;
+
+    let id =
+        "NAS-" +
+        String(number).padStart(3, "0");
+
+    while (
+        products.some(
+            product => product.id === id
+        )
+    ) {
+
+        number++;
+
+        id =
+            "NAS-" +
+            String(number).padStart(3, "0");
+
+    }
+
+    return id;
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+   Prevents product text from injecting HTML.
+========================================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================
+   FORMAT PRICE
+========================================= */
+
+function formatPrice(price) {
+
+    return Number(price || 0)
+        .toLocaleString("en-NG");
+
+}
+
+
+/* =========================================
+   CAPITALIZE
+========================================= */
+
+function capitalize(text) {
+
+    if (!text) return "";
+
+    return text.charAt(0).toUpperCase()
+        + text.slice(1);
+
+}
+
+
+/* =========================================
+   DISPLAY PRODUCTS
+========================================= */
+
+function renderProducts() {
+
+    const products =
+        getProducts();
+
+    const table =
+        document.getElementById(
+            "productsTable"
+        );
+
+    const search =
+        document.getElementById(
+            "searchProducts"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+    const category =
+        document.getElementById(
+            "categoryFilter"
+        ).value;
+
+    const stockFilter =
+        document.getElementById(
+            "stockFilter"
+        ).value;
+
+
+    table.innerHTML = "";
+
+
+    const filtered =
+        products.filter(product => {
+
+            const productName =
+                String(product.name || "")
+                    .toLowerCase();
+
+            const productId =
+                String(product.id || "")
+                    .toLowerCase();
 
             const matchesSearch =
-                product.name
-                    .toLowerCase()
-                    .includes(search);
+                productName.includes(search) ||
+                productId.includes(search);
 
 
             const matchesCategory =
@@ -1002,437 +1469,719 @@
         });
 
 
-        if (filtered.length === 0) {
+    /* EMPTY STATE */
 
-            table.innerHTML = `
+    if (filtered.length === 0) {
 
-                <tr>
+        table.innerHTML = `
 
-                    <td
-                        colspan="6"
-                        class="empty-products"
-                    >
+            <tr>
 
-                        <i class="fa-regular fa-clock"></i>
+                <td
+                    colspan="6"
+                    class="empty-products"
+                >
 
-                        <br>
+                    <i class="fa-regular fa-clock"></i>
 
-                        No products found.
-
-                    </td>
-
-                </tr>
-
-            `;
-
-            return;
-
-        }
-
-
-        filtered.forEach(product => {
-
-            const originalIndex =
-                products.indexOf(product);
-
-
-            let stockClass =
-                "stock-good";
-
-            let stockText =
-                `${product.stock} units`;
-
-
-            if (product.stock === 0) {
-
-                stockClass = "stock-out";
-                stockText = "Out of stock";
-
-            } else if (product.stock <= 10) {
-
-                stockClass = "stock-low";
-
-            }
-
-
-            const image =
-                product.image
-                    ? `
-                        <img
-                            src="${product.image}"
-                            alt="${product.name}"
-                        >
-                      `
-                    : `
-                        <i class="fa-regular fa-clock"></i>
-                      `;
-
-
-            const row =
-                document.createElement("tr");
-
-
-            row.innerHTML = `
-
-                <td>
-
-                    <div class="product-name">
-
-                        <div class="product-table-image">
-
-                            ${image}
-
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                ${product.name}
-                            </strong>
-
-                            <small>
-                                NASSAH Concept
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                </td>
-
-
-                <td>
-                    ${capitalize(product.category)}
-                </td>
-
-
-                <td>
                     <strong>
-                        ₦${Number(product.price)
-                            .toLocaleString()}
+                        No products found
                     </strong>
-                </td>
 
-
-                <td>
-
-                    <span class="${stockClass}">
-                        ${stockText}
+                    <span>
+                        Try changing your search or filters.
                     </span>
 
                 </td>
 
+            </tr>
 
-                <td>
+        `;
 
-                    ${
-                        product.featured
-                        ? `<span class="status delivered">
-                            Featured
-                           </span>`
-                        : `<span style="color:#555">
-                            —
-                           </span>`
-                    }
+        return;
 
-                </td>
+    }
 
 
-                <td>
+    /* PRODUCTS */
 
-                    <div class="action-buttons">
+    filtered.forEach(product => {
 
-                        <button
-                            class="action-btn"
-                            onclick="editProduct(${originalIndex})"
-                            title="Edit"
-                        >
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
+        const originalIndex =
+            products.indexOf(product);
 
-                        <button
-                            class="action-btn delete-btn"
-                            onclick="deleteProduct(${originalIndex})"
-                            title="Delete"
-                        >
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
 
-                    </div>
+        const stock =
+            Number(product.stock) || 0;
 
-                </td>
+
+        let stockClass =
+            "stock-good";
+
+        let stockText =
+            `${stock} units`;
+
+
+        if (stock === 0) {
+
+            stockClass =
+                "stock-out";
+
+            stockText =
+                "Out of stock";
+
+        } else if (stock <= 10) {
+
+            stockClass =
+                "stock-low";
+
+        }
+
+
+        /* IMAGE */
+
+        const image =
+            product.image
+                ? `
+                    <img
+                        src="${escapeHTML(product.image)}"
+                        alt="${escapeHTML(product.name)}"
+                    >
+                  `
+                : `
+                    <i class="fa-regular fa-clock"></i>
+                  `;
+
+
+        /* STATUS */
+
+        let status = "";
+
+        if (product.featured) {
+
+            status += `
+
+                <span class="product-badge featured-badge">
+
+                    <i class="fa-solid fa-star"></i>
+
+                    Featured
+
+                </span>
 
             `;
 
-
-            table.appendChild(row);
-
-        });
-
-    }
+        }
 
 
-    function capitalize(text) {
+        if (
+            Number(product.discount) > 0
+        ) {
 
-        return text.charAt(0).toUpperCase()
-            + text.slice(1);
+            status += `
 
-    }
+                <span class="product-badge discount-badge">
 
+                    -${Number(product.discount)}%
 
-    /* =========================
-       MODAL
-    ========================= */
+                </span>
 
-    function openProductModal(index = null) {
+            `;
 
-        const modal =
-            document.getElementById("productModal");
-
-        const form =
-            document.getElementById("productForm");
+        }
 
 
-        form.reset();
+        if (!status) {
+
+            status = `
+                <span style="color:#555;">
+                    —
+                </span>
+            `;
+
+        }
+
+
+        const row =
+            document.createElement("tr");
+
+
+        row.innerHTML = `
+
+            <td>
+
+                <div class="product-name">
+
+                    <div class="product-table-image">
+
+                        ${image}
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            ${escapeHTML(product.name)}
+                        </strong>
+
+                        <small class="sku-text">
+                            ${escapeHTML(product.id)}
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td>
+                ${escapeHTML(
+                    capitalize(product.category)
+                )}
+            </td>
+
+
+            <td>
+
+                <strong style="color:#ddd;">
+                    ₦${formatPrice(product.price)}
+                </strong>
+
+                ${
+                    Number(product.discount) > 0
+                    ? `
+                        <small style="
+                            display:block;
+                            color:#666;
+                            margin-top:4px;
+                            font-size:7px;
+                        ">
+                            ${Number(product.discount)}% OFF
+                        </small>
+                      `
+                    : ""
+                }
+
+            </td>
+
+
+            <td>
+
+                <span class="${stockClass}">
+                    ${stockText}
+                </span>
+
+            </td>
+
+
+            <td>
+
+                ${status}
+
+            </td>
+
+
+            <td>
+
+                <div class="action-buttons">
+
+                    <button
+                        class="action-btn"
+                        onclick="editProduct(${originalIndex})"
+                        title="Edit Product"
+                    >
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+
+                    <button
+                        class="action-btn delete-btn"
+                        onclick="deleteProduct(${originalIndex})"
+                        title="Delete Product"
+                    >
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+
+                </div>
+
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    });
+
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+function openProductModal(index = null) {
+
+    const modal =
+        document.getElementById(
+            "productModal"
+        );
+
+    const form =
+        document.getElementById(
+            "productForm"
+        );
+
+    const imagePreview =
+        document.getElementById(
+            "imagePreview"
+        );
+
+    const previewIcon =
+        document.getElementById(
+            "previewIcon"
+        );
+
+
+    form.reset();
+
+
+    document.getElementById(
+        "editIndex"
+    ).value = "";
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Add New Watch";
+
+
+    imagePreview.src = "";
+
+    imagePreview.style.display =
+        "none";
+
+    previewIcon.style.display =
+        "block";
+
+
+    /*
+        Store the existing image separately.
+        This fixes the old image disappearing
+        when editing without selecting a new file.
+    */
+
+    document.getElementById(
+        "productImage"
+    ).dataset.existingImage = "";
+
+
+    if (index !== null) {
+
+        const products =
+            getProducts();
+
+        const product =
+            products[index];
+
+
+        if (!product) return;
 
 
         document.getElementById(
             "editIndex"
-        ).value = "";
+        ).value = index;
 
 
         document.getElementById(
             "modalTitle"
         ).textContent =
-            "Add New Watch";
+            "Edit Watch";
 
 
         document.getElementById(
-            "imagePreview"
-        ).style.display = "none";
+            "productName"
+        ).value =
+            product.name || "";
 
 
         document.getElementById(
-            "previewIcon"
-        ).style.display = "block";
+            "productPrice"
+        ).value =
+            product.price || 0;
 
 
-        if (index !== null) {
-
-            const product =
-                getProducts()[index];
-
-
-            document.getElementById(
-                "editIndex"
-            ).value = index;
+        document.getElementById(
+            "productCategory"
+        ).value =
+            product.category || "classic";
 
 
-            document.getElementById(
-                "modalTitle"
-            ).textContent =
-                "Edit Watch";
+        document.getElementById(
+            "productStock"
+        ).value =
+            product.stock || 0;
 
 
-            document.getElementById(
-                "productName"
-            ).value =
-                product.name;
+        document.getElementById(
+            "productDiscount"
+        ).value =
+            product.discount || 0;
 
 
-            document.getElementById(
-                "productPrice"
-            ).value =
-                product.price;
+        document.getElementById(
+            "productFeatured"
+        ).value =
+            product.featured
+                ? "true"
+                : "false";
 
 
-            document.getElementById(
-                "productCategory"
-            ).value =
-                product.category;
+        document.getElementById(
+            "productDescription"
+        ).value =
+            product.description || "";
 
 
-            document.getElementById(
-                "productStock"
-            ).value =
-                product.stock;
+        /* KEEP EXISTING IMAGE */
 
+        if (product.image) {
 
-            document.getElementById(
-                "productDiscount"
-            ).value =
-                product.discount || 0;
+            imagePreview.src =
+                product.image;
 
+            imagePreview.style.display =
+                "block";
 
-            document.getElementById(
-                "productFeatured"
-            ).value =
-                product.featured;
-
+            previewIcon.style.display =
+                "none";
 
             document.getElementById(
-                "productDescription"
-            ).value =
-                product.description || "";
-
-
-            if (product.image) {
-
-                const preview =
-                    document.getElementById(
-                        "imagePreview"
-                    );
-
-                preview.src =
-                    product.image;
-
-                preview.style.display =
-                    "block";
-
-                document.getElementById(
-                    "previewIcon"
-                ).style.display =
-                    "none";
-
-            }
+                "productImage"
+            ).dataset.existingImage =
+                product.image;
 
         }
 
-
-        modal.classList.add("show");
-
     }
 
 
-    function closeProductModal() {
+    modal.classList.add("show");
 
-        document
-            .getElementById("productModal")
-            .classList.remove("show");
+    setTimeout(() => {
 
-    }
+        document.getElementById(
+            "productName"
+        ).focus();
+
+    }, 100);
+
+}
 
 
-    /* =========================
-       IMAGE PREVIEW
-    ========================= */
+/* =========================================
+   CLOSE MODAL
+========================================= */
+
+function closeProductModal() {
 
     document
-        .getElementById("productImage")
-        .addEventListener("change", function () {
+        .getElementById("productModal")
+        .classList.remove("show");
 
-            const file = this.files[0];
+}
+
+
+/* =========================================
+   IMAGE PREVIEW
+========================================= */
+
+document
+    .getElementById("productImage")
+    .addEventListener(
+        "change",
+        function () {
+
+            const file =
+                this.files[0];
 
             if (!file) return;
+
+
+            /* Validate image */
+
+            if (
+                !file.type.startsWith("image/")
+            ) {
+
+                showToast(
+                    "Please select a valid image."
+                );
+
+                this.value = "";
+
+                return;
+
+            }
+
+
+            /*
+                Limit large images because
+                localStorage has limited storage.
+            */
+
+            if (
+                file.size > 2 * 1024 * 1024
+            ) {
+
+                showToast(
+                    "Image should be smaller than 2MB."
+                );
+
+                this.value = "";
+
+                return;
+
+            }
 
 
             const reader =
                 new FileReader();
 
 
-            reader.onload = function(event) {
+            reader.onload =
+                function(event) {
 
-                const preview =
-                    document.getElementById(
-                        "imagePreview"
-                    );
-
-                preview.src =
-                    event.target.result;
-
-                preview.style.display =
-                    "block";
-
-                document.getElementById(
-                    "previewIcon"
-                ).style.display =
-                    "none";
-
-            };
-
-
-            reader.readAsDataURL(file);
-
-        });
-
-
-    /* =========================
-       SAVE PRODUCT
-    ========================= */
-
-    document
-        .getElementById("productForm")
-        .addEventListener(
-            "submit",
-            function(event) {
-
-                event.preventDefault();
-
-
-                const products =
-                    getProducts();
-
-
-                const editIndex =
-                    document.getElementById(
-                        "editIndex"
-                    ).value;
-
-
-                const product = {
-
-                    name:
-                        document.getElementById(
-                            "productName"
-                        ).value.trim(),
-
-                    price:
-                        Number(
-                            document.getElementById(
-                                "productPrice"
-                            ).value
-                        ),
-
-                    category:
-                        document.getElementById(
-                            "productCategory"
-                        ).value,
-
-                    stock:
-                        Number(
-                            document.getElementById(
-                                "productStock"
-                            ).value
-                        ),
-
-                    discount:
-                        Number(
-                            document.getElementById(
-                                "productDiscount"
-                            ).value
-                        ) || 0,
-
-                    featured:
-                        document.getElementById(
-                            "productFeatured"
-                        ).value === "true",
-
-                    description:
-                        document.getElementById(
-                            "productDescription"
-                        ).value.trim(),
-
-                    image:
+                    const preview =
                         document.getElementById(
                             "imagePreview"
-                        ).src || ""
+                        );
+
+
+                    preview.src =
+                        event.target.result;
+
+                    preview.style.display =
+                        "block";
+
+
+                    document.getElementById(
+                        "previewIcon"
+                    ).style.display =
+                        "none";
 
                 };
 
 
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+
+/* =========================================
+   SAVE PRODUCT
+========================================= */
+
+document
+    .getElementById("productForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const products =
+                getProducts();
+
+
+            const editIndex =
+                document.getElementById(
+                    "editIndex"
+                ).value;
+
+
+            const name =
+                document.getElementById(
+                    "productName"
+                ).value.trim();
+
+
+            const price =
+                Number(
+                    document.getElementById(
+                        "productPrice"
+                    ).value
+                );
+
+
+            const stock =
+                Number(
+                    document.getElementById(
+                        "productStock"
+                    ).value
+                );
+
+
+            const discount =
+                Number(
+                    document.getElementById(
+                        "productDiscount"
+                    ).value
+                ) || 0;
+
+
+            /* VALIDATION */
+
+            if (!name) {
+
+                showToast(
+                    "Please enter a product name."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !Number.isFinite(price) ||
+                price < 0
+            ) {
+
+                showToast(
+                    "Please enter a valid price."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !Number.isFinite(stock) ||
+                stock < 0
+            ) {
+
+                showToast(
+                    "Please enter a valid stock quantity."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                discount < 0 ||
+                discount > 100
+            ) {
+
+                showToast(
+                    "Discount must be between 0 and 100%."
+                );
+
+                return;
+
+            }
+
+
+            /*
+                IMPORTANT:
+                If editing and no new image was selected,
+                preserve the old image.
+            */
+
+            const imageInput =
+                document.getElementById(
+                    "productImage"
+                );
+
+
+            const existingImage =
+                imageInput.dataset.existingImage || "";
+
+
+            const selectedImage =
+                document.getElementById(
+                    "imagePreview"
+                ).src || "";
+
+
+            let image = "";
+
+
+            if (
+                imageInput.files &&
+                imageInput.files.length > 0
+            ) {
+
+                image =
+                    selectedImage;
+
+            } else {
+
+                image =
+                    existingImage;
+
+            }
+
+
+            const product = {
+
+                id:
+                    editIndex === ""
+                    ? generateProductId(products)
+                    : products[
+                        Number(editIndex)
+                      ].id,
+
+                name:
+                    name,
+
+                price:
+                    price,
+
+                category:
+                    document.getElementById(
+                        "productCategory"
+                    ).value,
+
+                stock:
+                    stock,
+
+                discount:
+                    discount,
+
+                featured:
+                    document.getElementById(
+                        "productFeatured"
+                    ).value === "true",
+
+                description:
+                    document.getElementById(
+                        "productDescription"
+                    ).value.trim(),
+
+                image:
+                    image
+
+            };
+
+
+            try {
+
                 if (editIndex === "") {
 
                     products.push(product);
+
+                    saveProducts(products);
+
+                    showToast(
+                        "Product added successfully."
+                    );
 
                 } else {
 
@@ -1440,112 +2189,259 @@
                         Number(editIndex)
                     ] = product;
 
+                    saveProducts(products);
+
+                    showToast(
+                        "Product updated successfully."
+                    );
+
                 }
 
-
-                saveProducts(products);
 
                 closeProductModal();
 
                 renderProducts();
 
+
+            } catch (error) {
+
+                console.error(
+                    "Could not save product:",
+                    error
+                );
+
+                showToast(
+                    "Could not save product. Storage may be full."
+                );
+
             }
-        );
 
-
-    /* =========================
-       DELETE
-    ========================= */
-
-    function deleteProduct(index) {
-
-        const products =
-            getProducts();
-
-
-        if (
-            !confirm(
-                "Delete this product?"
-            )
-        ) {
-            return;
         }
+    );
 
 
-        products.splice(index, 1);
+/* =========================================
+   EDIT PRODUCT
+========================================= */
 
-        saveProducts(products);
+function editProduct(index) {
 
-        renderProducts();
+    openProductModal(index);
 
-    }
+}
 
 
-    /* =========================
-       SEARCH / FILTER
-    ========================= */
+/* =========================================
+   DELETE PRODUCT
+========================================= */
 
-    document
-        .getElementById("searchProducts")
-        .addEventListener(
-            "input",
-            renderProducts
+function deleteProduct(index) {
+
+    const products =
+        getProducts();
+
+    const product =
+        products[index];
+
+
+    if (!product) return;
+
+
+    const confirmed =
+        confirm(
+            `Delete "${product.name}"?\n\nThis action cannot be undone.`
         );
 
 
-    document
-        .getElementById("categoryFilter")
-        .addEventListener(
-            "change",
-            renderProducts
-        );
+    if (!confirmed) return;
 
 
-    document
-        .getElementById("stockFilter")
-        .addEventListener(
-            "change",
-            renderProducts
-        );
+    products.splice(index, 1);
 
 
-    /* =========================
-       MOBILE MENU
-    ========================= */
-
-    document
-        .getElementById("mobileMenu")
-        .addEventListener(
-            "click",
-            () => {
-
-                document
-                    .getElementById("sidebar")
-                    .classList.toggle("open");
-
-            }
-        );
-
-
-    /* =========================
-       LOGOUT
-    ========================= */
-
-    function logout() {
-
-        localStorage.removeItem(
-            "nassahAdminLoggedIn"
-        );
-
-        window.location.href =
-            "login.html";
-
-    }
+    saveProducts(products);
 
 
     renderProducts();
+
+
+    showToast(
+        "Product deleted successfully."
+    );
+
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+document
+    .getElementById("searchProducts")
+    .addEventListener(
+        "input",
+        renderProducts
+    );
+
+
+/* =========================================
+   CATEGORY FILTER
+========================================= */
+
+document
+    .getElementById("categoryFilter")
+    .addEventListener(
+        "change",
+        renderProducts
+    );
+
+
+/* =========================================
+   STOCK FILTER
+========================================= */
+
+document
+    .getElementById("stockFilter")
+    .addEventListener(
+        "change",
+        renderProducts
+    );
+
+
+/* =========================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================= */
+
+document
+    .getElementById("productModal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeProductModal();
+
+            }
+
+        }
+    );
+
+
+/* =========================================
+   ESC KEY
+========================================= */
+
+document
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeProductModal();
+
+            }
+
+        }
+    );
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+document
+    .getElementById("mobileMenu")
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById("sidebar")
+                .classList.toggle("open");
+
+        }
+    );
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+function logout() {
+
+    localStorage.removeItem(
+        "nassahAdminLoggedIn"
+    );
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =========================================
+   TOAST
+========================================= */
+
+let toastTimer;
+
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+    const toastMessage =
+        document.getElementById(
+            "toastMessage"
+        );
+
+
+    toastMessage.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            3000
+        );
+
+}
+
+
+/* =========================================
+   INITIAL LOAD
+========================================= */
+
+renderProducts();
 
 </script>
 
 </body>
 </html>
+```

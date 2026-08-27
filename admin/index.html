@@ -1,0 +1,2347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NASSAH Concept | Admin Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="../admin-css/admin.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           DASHBOARD
+        ===================================================== */
+
+        .dashboard-page {
+            padding: 35px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header small {
+            display: block;
+            color: var(--gold);
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .dashboard-header h1 {
+            margin: 0;
+            font-family: 'Cinzel', serif;
+            font-size: 30px;
+        }
+
+        .dashboard-date {
+            color: #777;
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           STATS
+        ===================================================== */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 22px;
+            transition: .3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .stat-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #191919;
+            color: var(--gold);
+            font-size: 17px;
+        }
+
+        .stat-card h2 {
+            margin: 0 0 7px;
+            color: #eee;
+            font-size: 25px;
+        }
+
+        .stat-card p {
+            margin: 0;
+            color: #666;
+            font-size: 9px;
+            letter-spacing: 1px;
+        }
+
+        .stat-change {
+            color: #73bd88;
+            font-size: 9px;
+        }
+
+
+        /* =====================================================
+           EXTRA STATS
+        ===================================================== */
+
+        .secondary-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .mini-stat {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mini-stat-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #191919;
+            color: var(--gold);
+        }
+
+        .mini-stat strong {
+            display: block;
+            color: #ddd;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .mini-stat span {
+            color: #666;
+            font-size: 8px;
+            letter-spacing: 1px;
+        }
+
+        .danger-number {
+            color: #d95c5c !important;
+        }
+
+        .warning-number {
+            color: #d5a832 !important;
+        }
+
+
+        /* =====================================================
+           DASHBOARD GRID
+        ===================================================== */
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 25px;
+        }
+
+        .card-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .card-heading h2 {
+            margin: 0;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+        }
+
+        .card-heading span {
+            color: var(--gold);
+            font-size: 8px;
+            letter-spacing: 1px;
+        }
+
+
+        /* =====================================================
+           SALES CHART
+        ===================================================== */
+
+        .sales-chart {
+            height: 260px;
+            display: flex;
+            align-items: flex-end;
+            gap: 14px;
+            padding: 15px 5px 25px;
+            border-bottom: 1px solid #292929;
+        }
+
+        .chart-column {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            position: relative;
+        }
+
+        .chart-bar {
+            width: 65%;
+            min-height: 8px;
+            background: var(--gold);
+            opacity: .75;
+            transition: .3s;
+        }
+
+        .chart-bar:hover {
+            opacity: 1;
+        }
+
+        .chart-label {
+            position: absolute;
+            bottom: -23px;
+            color: #666;
+            font-size: 8px;
+        }
+
+        .chart-empty {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 9px;
+        }
+
+
+        /* =====================================================
+           TOP PRODUCTS
+        ===================================================== */
+
+        .top-product {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid #202020;
+        }
+
+        .top-product:last-child {
+            border-bottom: none;
+        }
+
+        .product-thumb {
+            width: 48px;
+            height: 48px;
+            background: #191919;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .product-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-thumb i {
+            color: var(--gold);
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-details strong {
+            display: block;
+            color: #ddd;
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+
+        .product-details small {
+            color: #555;
+            font-size: 8px;
+        }
+
+        .product-price {
+            color: var(--gold);
+            font-size: 9px;
+        }
+
+
+        /* =====================================================
+           ORDERS
+        ===================================================== */
+
+        .orders-card {
+            margin-bottom: 20px;
+        }
+
+        .table-scroll {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .orders-table th {
+            text-align: left;
+            color: #555;
+            font-size: 8px;
+            letter-spacing: 1px;
+            padding: 12px 8px;
+            border-bottom: 1px solid #292929;
+        }
+
+        .orders-table td {
+            color: #aaa;
+            font-size: 9px;
+            padding: 15px 8px;
+            border-bottom: 1px solid #202020;
+        }
+
+        .orders-table tr:hover td {
+            background: rgba(255,255,255,.015);
+        }
+
+        .order-id {
+            color: var(--gold) !important;
+            font-weight: 700;
+        }
+
+        .order-status {
+            display: inline-block;
+            padding: 5px 8px;
+            font-size: 7px;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            color: #d5a832;
+            background: rgba(213,168,50,.1);
+        }
+
+        .status-completed,
+        .status-delivered {
+            color: #73bd88;
+            background: rgba(115,189,136,.1);
+        }
+
+        .status-cancelled {
+            color: #d95c5c;
+            background: rgba(217,92,92,.1);
+        }
+
+        .status-processing {
+            color: #7da7d9;
+            background: rgba(125,167,217,.1);
+        }
+
+
+        /* =====================================================
+           LOW STOCK
+        ===================================================== */
+
+        .stock-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stock-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid #202020;
+        }
+
+        .stock-item:last-child {
+            border-bottom: none;
+        }
+
+        .stock-name {
+            color: #bbb;
+            font-size: 9px;
+        }
+
+        .stock-number {
+            color: #d95c5c;
+            font-size: 9px;
+        }
+
+        .stock-ok {
+            color: #73bd88;
+        }
+
+
+        /* =====================================================
+           QUICK ACTIONS
+        ===================================================== */
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .quick-action {
+            text-decoration: none;
+            color: #aaa;
+            background: #151515;
+            border: 1px solid #252525;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: .3s;
+        }
+
+        .quick-action:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .quick-action i {
+            color: var(--gold);
+            font-size: 14px;
+        }
+
+        .quick-action span {
+            font-size: 9px;
+        }
+
+
+        /* =====================================================
+           EMPTY
+        ===================================================== */
+
+        .empty-dashboard {
+            text-align: center;
+            padding: 35px 10px;
+            color: #555;
+        }
+
+        .empty-dashboard i {
+            color: var(--gold);
+            font-size: 27px;
+            margin-bottom: 12px;
+        }
+
+        .empty-dashboard p {
+            margin: 0;
+            font-size: 9px;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 1050px) {
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .secondary-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .dashboard-page {
+                padding: 20px 15px;
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .secondary-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-card {
+                padding: 18px;
+            }
+
+            .sales-chart {
+                min-width: 450px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-brand">
+
+        <div class="brand-crown">
+            <i class="fa-solid fa-crown"></i>
+        </div>
+
+        <div>
+            <h2>NASSAH</h2>
+            <span>CONCEPT</span>
+        </div>
+
+    </div>
+
+
+    <div class="sidebar-menu">
+
+        <p class="menu-label">
+            MAIN MENU
+        </p>
+
+        <a
+            href="index.html"
+            class="menu-item active"
+        >
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a
+            href="products.html"
+            class="menu-item"
+        >
+            <i class="fa-solid fa-box-open"></i>
+            <span>Products</span>
+        </a>
+
+        <a
+            href="orders.html"
+            class="menu-item"
+        >
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Orders</span>
+        </a>
+
+        <a
+            href="customers.html"
+            class="menu-item"
+        >
+            <i class="fa-solid fa-users"></i>
+            <span>Customers</span>
+        </a>
+
+
+        <p class="menu-label">
+            MANAGEMENT
+        </p>
+
+        <a
+            href="promotions.html"
+            class="menu-item"
+        >
+            <i class="fa-solid fa-tags"></i>
+            <span>Promotions</span>
+        </a>
+
+        <a
+            href="inventory.html"
+            class="menu-item"
+        >
+            <i class="fa-solid fa-warehouse"></i>
+            <span>Inventory</span>
+        </a>
+
+        <a
+            href="analytics.html"
+            class="menu-item"
+        >
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Analytics</span>
+        </a>
+
+
+        <p class="menu-label">
+            SYSTEM
+        </p>
+
+        <a
+            href="settings.html"
+            class="menu-item"
+        >
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+        </a>
+
+        <button
+            class="menu-item logout"
+            type="button"
+            onclick="logout()"
+        >
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main-content">
+
+
+    <!-- =================================================
+         TOPBAR
+    ================================================= -->
+
+    <header class="topbar">
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+            type="button"
+        >
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+
+        <div class="page-location">
+
+            <span>
+                NASSAH CONCEPT
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+            <strong>
+                Dashboard
+            </strong>
+
+        </div>
+
+
+        <div class="topbar-actions">
+
+            <button
+                class="topbar-icon"
+                type="button"
+                title="Search"
+            >
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+
+            <button
+                class="topbar-icon notification"
+                type="button"
+                title="Notifications"
+            >
+                <i class="fa-regular fa-bell"></i>
+                <span></span>
+            </button>
+
+
+            <div class="topbar-profile">
+
+                <div class="admin-avatar">
+                    A
+                </div>
+
+                <div class="profile-name">
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        Super Admin
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         DASHBOARD CONTENT
+    ================================================= -->
+
+    <section class="dashboard-page">
+
+
+        <!-- HEADER -->
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <small>
+                    ADMINISTRATION
+                </small>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+            </div>
+
+            <div
+                class="dashboard-date"
+                id="dashboardDate"
+            ></div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             MAIN STATISTICS
+        ================================================= -->
+
+        <div class="stats-grid">
+
+
+            <!-- SALES -->
+
+            <div class="stat-card">
+
+                <div class="stat-card-top">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-naira-sign"></i>
+                    </div>
+
+                    <span class="stat-change">
+                        LIVE
+                    </span>
+
+                </div>
+
+                <h2 id="totalSales">
+                    ₦0
+                </h2>
+
+                <p>
+                    TOTAL SALES
+                </p>
+
+            </div>
+
+
+            <!-- ORDERS -->
+
+            <div class="stat-card">
+
+                <div class="stat-card-top">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+
+                    <span class="stat-change">
+                        LIVE
+                    </span>
+
+                </div>
+
+                <h2 id="totalOrders">
+                    0
+                </h2>
+
+                <p>
+                    TOTAL ORDERS
+                </p>
+
+            </div>
+
+
+            <!-- PRODUCTS -->
+
+            <div class="stat-card">
+
+                <div class="stat-card-top">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+
+                </div>
+
+                <h2 id="totalProducts">
+                    0
+                </h2>
+
+                <p>
+                    TOTAL PRODUCTS
+                </p>
+
+            </div>
+
+
+            <!-- CUSTOMERS -->
+
+            <div class="stat-card">
+
+                <div class="stat-card-top">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                </div>
+
+                <h2 id="totalCustomers">
+                    0
+                </h2>
+
+                <p>
+                    CUSTOMERS
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SECONDARY STATISTICS
+        ================================================= -->
+
+        <div class="secondary-stats">
+
+
+            <div class="mini-stat">
+
+                <div class="mini-stat-icon">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+
+                    <strong id="pendingOrders">
+                        0
+                    </strong>
+
+                    <span>
+                        PENDING ORDERS
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="mini-stat">
+
+                <div class="mini-stat-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+
+                <div>
+
+                    <strong
+                        id="lowStock"
+                        class="warning-number"
+                    >
+                        0
+                    </strong>
+
+                    <span>
+                        LOW STOCK
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="mini-stat">
+
+                <div class="mini-stat-icon">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+
+                <div>
+
+                    <strong
+                        id="outOfStock"
+                        class="danger-number"
+                    >
+                        0
+                    </strong>
+
+                    <span>
+                        OUT OF STOCK
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SALES + TOP PRODUCTS
+        ================================================= -->
+
+        <div class="dashboard-grid">
+
+
+            <!-- SALES -->
+
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+
+                    <h2>
+                        Sales Overview
+                    </h2>
+
+                    <span>
+                        LAST 7 DAYS
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="sales-chart"
+                    id="salesChart"
+                ></div>
+
+            </div>
+
+
+
+            <!-- TOP PRODUCTS -->
+
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+
+                    <h2>
+                        Top Products
+                    </h2>
+
+                    <span>
+                        CATALOG
+                    </span>
+
+                </div>
+
+
+                <div id="topProducts"></div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RECENT ORDERS
+        ================================================= -->
+
+        <div class="dashboard-card orders-card">
+
+            <div class="card-heading">
+
+                <h2>
+                    Recent Orders
+                </h2>
+
+                <span>
+                    LATEST
+                </span>
+
+            </div>
+
+
+            <div class="table-scroll">
+
+                <table class="orders-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ORDER
+                            </th>
+
+                            <th>
+                                CUSTOMER
+                            </th>
+
+                            <th>
+                                AMOUNT
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                            <th>
+                                DATE
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="recentOrders"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             LOW STOCK + QUICK ACTIONS
+        ================================================= -->
+
+        <div class="dashboard-grid">
+
+
+            <!-- LOW STOCK -->
+
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+
+                    <h2>
+                        Stock Alert
+                    </h2>
+
+                    <span>
+                        INVENTORY
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="stock-list"
+                    id="lowStockList"
+                ></div>
+
+            </div>
+
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                    <span>
+                        MANAGEMENT
+                    </span>
+
+                </div>
+
+
+                <div class="quick-actions">
+
+
+                    <a
+                        href="products.html"
+                        class="quick-action"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+
+                        <span>
+                            Add Product
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="orders.html"
+                        class="quick-action"
+                    >
+                        <i class="fa-solid fa-cart-shopping"></i>
+
+                        <span>
+                            View Orders
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="inventory.html"
+                        class="quick-action"
+                    >
+                        <i class="fa-solid fa-warehouse"></i>
+
+                        <span>
+                            Inventory
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="customers.html"
+                        class="quick-action"
+                    >
+                        <i class="fa-solid fa-users"></i>
+
+                        <span>
+                            Customers
+                        </span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   ADMIN LOGIN PROTECTION
+===================================================== */
+
+if (
+    localStorage.getItem("nassahAdminLoggedIn")
+    !== "true"
+) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+
+/* =====================================================
+   GET PRODUCTS
+===================================================== */
+
+function getProducts() {
+
+    try {
+
+        const data =
+            localStorage.getItem(
+                "nassahProducts"
+            );
+
+        if (!data) {
+            return [];
+        }
+
+        const products =
+            JSON.parse(data);
+
+        return Array.isArray(products)
+            ? products
+            : [];
+
+    } catch (error) {
+
+        console.error(
+            "Products error:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+
+/* =====================================================
+   GET ORDERS
+===================================================== */
+
+function getOrders() {
+
+    try {
+
+        const data =
+            localStorage.getItem(
+                "nassahOrders"
+            );
+
+        if (!data) {
+            return [];
+        }
+
+        const orders =
+            JSON.parse(data);
+
+        return Array.isArray(orders)
+            ? orders
+            : [];
+
+    } catch (error) {
+
+        console.error(
+            "Orders error:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+
+/* =====================================================
+   FORMAT MONEY
+===================================================== */
+
+function formatMoney(amount) {
+
+    return "₦" +
+        Number(amount || 0)
+            .toLocaleString("en-NG");
+
+}
+
+
+
+/* =====================================================
+   CAPITALIZE
+===================================================== */
+
+function capitalize(text) {
+
+    if (!text) {
+        return "";
+    }
+
+    return text
+        .charAt(0)
+        .toUpperCase()
+        + text.slice(1);
+
+}
+
+
+
+/* =====================================================
+   GET ORDER TOTAL
+===================================================== */
+
+function getOrderTotal(order) {
+
+    return Number(
+        order.total ??
+        order.amount ??
+        order.grandTotal ??
+        0
+    );
+
+}
+
+
+
+/* =====================================================
+   GET CUSTOMER NAME
+===================================================== */
+
+function getCustomerName(order) {
+
+    return (
+        order.customerName ||
+        order.customer ||
+        order.name ||
+        order.email ||
+        "Customer"
+    );
+
+}
+
+
+
+/* =====================================================
+   GET ORDER STATUS
+===================================================== */
+
+function getOrderStatus(order) {
+
+    return (
+        order.status ||
+        "pending"
+    ).toLowerCase();
+
+}
+
+
+
+/* =====================================================
+   GET ORDER DATE
+===================================================== */
+
+function getOrderDate(order) {
+
+    const date =
+        order.date ||
+        order.createdAt ||
+        order.created ||
+        order.timestamp;
+
+    if (!date) {
+        return "—";
+    }
+
+    const parsed =
+        new Date(date);
+
+    if (
+        Number.isNaN(
+            parsed.getTime()
+        )
+    ) {
+        return "—";
+    }
+
+    return parsed.toLocaleDateString(
+        "en-NG",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   UPDATE MAIN STATS
+===================================================== */
+
+function updateStats() {
+
+    const products =
+        getProducts();
+
+    const orders =
+        getOrders();
+
+
+    /* PRODUCTS */
+
+    document
+        .getElementById("totalProducts")
+        .textContent =
+            products.length;
+
+
+    /* ORDERS */
+
+    document
+        .getElementById("totalOrders")
+        .textContent =
+            orders.length;
+
+
+    /* SALES */
+
+    const sales =
+        orders
+            .filter(order =>
+                getOrderStatus(order)
+                !== "cancelled"
+            )
+            .reduce(
+                (sum, order) =>
+                    sum +
+                    getOrderTotal(order),
+                0
+            );
+
+
+    document
+        .getElementById("totalSales")
+        .textContent =
+            formatMoney(sales);
+
+
+    /* PENDING */
+
+    const pending =
+        orders.filter(order => {
+
+            const status =
+                getOrderStatus(order);
+
+            return (
+                status === "pending" ||
+                status === "processing"
+            );
+
+        }).length;
+
+
+    document
+        .getElementById("pendingOrders")
+        .textContent =
+            pending;
+
+
+    /* LOW STOCK */
+
+    const low =
+        products.filter(product => {
+
+            const stock =
+                Number(product.stock || 0);
+
+            return (
+                stock > 0 &&
+                stock <= 10
+            );
+
+        }).length;
+
+
+    document
+        .getElementById("lowStock")
+        .textContent =
+            low;
+
+
+    /* OUT OF STOCK */
+
+    const out =
+        products.filter(product =>
+            Number(product.stock || 0)
+            === 0
+        ).length;
+
+
+    document
+        .getElementById("outOfStock")
+        .textContent =
+            out;
+
+
+    /* CUSTOMERS */
+
+    const customerSet =
+        new Set();
+
+
+    orders.forEach(order => {
+
+        const customer =
+            getCustomerName(order);
+
+        if (
+            customer &&
+            customer !== "Customer"
+        ) {
+
+            customerSet.add(
+                String(customer)
+                    .toLowerCase()
+            );
+
+        }
+
+    });
+
+
+    /*
+       If your customer page already
+       stores customers, use them.
+    */
+
+    try {
+
+        const storedCustomers =
+            JSON.parse(
+                localStorage.getItem(
+                    "nassahCustomers"
+                )
+            );
+
+        if (
+            Array.isArray(
+                storedCustomers
+            )
+        ) {
+
+            storedCustomers.forEach(
+                customer => {
+
+                    customerSet.add(
+                        String(
+                            customer.email ||
+                            customer.name ||
+                            customer
+                        ).toLowerCase()
+                    );
+
+                }
+            );
+
+        }
+
+    } catch {}
+
+
+    document
+        .getElementById("totalCustomers")
+        .textContent =
+            customerSet.size;
+
+}
+
+
+
+/* =====================================================
+   TOP PRODUCTS
+===================================================== */
+
+function renderTopProducts() {
+
+    const products =
+        getProducts();
+
+    const container =
+        document.getElementById(
+            "topProducts"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (products.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-dashboard">
+
+                <i class="fa-solid fa-box-open"></i>
+
+                <p>
+                    No products added yet.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+       Featured products first.
+       Then highest stock / catalog items.
+    */
+
+    const sorted =
+        [...products]
+            .sort(
+                (a, b) =>
+                    Number(b.featured) -
+                    Number(a.featured)
+            )
+            .slice(0, 5);
+
+
+    sorted.forEach(product => {
+
+        const item =
+            document.createElement(
+                "div"
+            );
+
+        item.className =
+            "top-product";
+
+
+        const image =
+            product.image
+                ? `
+                    <img
+                        src="${product.image}"
+                        alt="${product.name || "Product"}"
+                    >
+                  `
+                : `
+                    <i class="fa-regular fa-clock"></i>
+                  `;
+
+
+        item.innerHTML = `
+
+            <div class="product-thumb">
+
+                ${image}
+
+            </div>
+
+
+            <div class="product-details">
+
+                <strong>
+                    ${product.name || "Unnamed Product"}
+                </strong>
+
+                <small>
+                    ${capitalize(
+                        product.category ||
+                        "General"
+                    )}
+                </small>
+
+            </div>
+
+
+            <div class="product-price">
+
+                ${formatMoney(
+                    product.price
+                )}
+
+            </div>
+
+        `;
+
+
+        container.appendChild(item);
+
+    });
+
+}
+
+
+
+/* =====================================================
+   RECENT ORDERS
+===================================================== */
+
+function renderRecentOrders() {
+
+    const orders =
+        getOrders();
+
+    const container =
+        document.getElementById(
+            "recentOrders"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (orders.length === 0) {
+
+        container.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    style="
+                        text-align:center;
+                        padding:40px;
+                        color:#555;
+                    "
+                >
+
+                    <i
+                        class="fa-solid fa-cart-shopping"
+                        style="
+                            color:var(--gold);
+                            font-size:24px;
+                            margin-bottom:10px;
+                        "
+                    ></i>
+
+                    <br>
+
+                    No orders yet.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    const recent =
+        [...orders]
+            .reverse()
+            .slice(0, 8);
+
+
+    recent.forEach(order => {
+
+        const row =
+            document.createElement(
+                "tr"
+            );
+
+
+        const status =
+            getOrderStatus(order);
+
+
+        let statusClass =
+            "status-pending";
+
+
+        if (
+            status === "completed"
+        ) {
+
+            statusClass =
+                "status-completed";
+
+        } else if (
+            status === "delivered"
+        ) {
+
+            statusClass =
+                "status-delivered";
+
+        } else if (
+            status === "cancelled"
+        ) {
+
+            statusClass =
+                "status-cancelled";
+
+        } else if (
+            status === "processing"
+        ) {
+
+            statusClass =
+                "status-processing";
+
+        }
+
+
+        const orderId =
+            order.id ||
+            order.orderId ||
+            "NASSAH";
+
+
+        row.innerHTML = `
+
+            <td class="order-id">
+
+                #${orderId}
+
+            </td>
+
+
+            <td>
+
+                ${getCustomerName(order)}
+
+            </td>
+
+
+            <td>
+
+                ${formatMoney(
+                    getOrderTotal(order)
+                )}
+
+            </td>
+
+
+            <td>
+
+                <span
+                    class="
+                        order-status
+                        ${statusClass}
+                    "
+                >
+
+                    ${capitalize(status)}
+
+                </span>
+
+            </td>
+
+
+            <td>
+
+                ${getOrderDate(order)}
+
+            </td>
+
+        `;
+
+
+        container.appendChild(row);
+
+    });
+
+}
+
+
+
+/* =====================================================
+   LOW STOCK LIST
+===================================================== */
+
+function renderLowStock() {
+
+    const products =
+        getProducts();
+
+    const container =
+        document.getElementById(
+            "lowStockList"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const lowProducts =
+        products
+            .filter(product =>
+                Number(product.stock || 0)
+                <= 10
+            )
+            .sort(
+                (a, b) =>
+                    Number(a.stock || 0) -
+                    Number(b.stock || 0)
+            )
+            .slice(0, 6);
+
+
+    if (lowProducts.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-dashboard">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <p>
+                    All products have healthy stock.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    lowProducts.forEach(product => {
+
+        const item =
+            document.createElement(
+                "div"
+            );
+
+        item.className =
+            "stock-item";
+
+
+        const stock =
+            Number(product.stock || 0);
+
+
+        item.innerHTML = `
+
+            <span class="stock-name">
+
+                ${product.name || "Unnamed Product"}
+
+            </span>
+
+
+            <span
+                class="
+                    stock-number
+                    ${
+                        stock === 0
+                            ? ""
+                            : "warning-number"
+                    }
+                "
+            >
+
+                ${
+                    stock === 0
+                        ? "OUT OF STOCK"
+                        : `${stock} units left`
+                }
+
+            </span>
+
+        `;
+
+
+        container.appendChild(item);
+
+    });
+
+}
+
+
+
+/* =====================================================
+   SALES CHART
+===================================================== */
+
+function renderSalesChart() {
+
+    const container =
+        document.getElementById(
+            "salesChart"
+        );
+
+    const orders =
+        getOrders();
+
+
+    container.innerHTML = "";
+
+
+    /*
+       Create last 7 days.
+    */
+
+    const days = [];
+
+
+    for (
+        let i = 6;
+        i >= 0;
+        i--
+    ) {
+
+        const date =
+            new Date();
+
+        date.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+        date.setDate(
+            date.getDate() - i
+        );
+
+
+        days.push({
+            date: date,
+            amount: 0
+        });
+
+    }
+
+
+    orders.forEach(order => {
+
+        const status =
+            getOrderStatus(order);
+
+
+        if (
+            status === "cancelled"
+        ) {
+            return;
+        }
+
+
+        const rawDate =
+            order.date ||
+            order.createdAt ||
+            order.created ||
+            order.timestamp;
+
+
+        if (!rawDate) {
+            return;
+        }
+
+
+        const orderDate =
+            new Date(rawDate);
+
+
+        if (
+            Number.isNaN(
+                orderDate.getTime()
+            )
+        ) {
+            return;
+        }
+
+
+        days.forEach(day => {
+
+            if (
+                orderDate.toDateString()
+                ===
+                day.date.toDateString()
+            ) {
+
+                day.amount +=
+                    getOrderTotal(order);
+
+            }
+
+        });
+
+    });
+
+
+    const max =
+        Math.max(
+            ...days.map(
+                day => day.amount
+            ),
+            1
+        );
+
+
+    days.forEach(day => {
+
+        const column =
+            document.createElement(
+                "div"
+            );
+
+        column.className =
+            "chart-column";
+
+
+        const bar =
+            document.createElement(
+                "div"
+            );
+
+        bar.className =
+            "chart-bar";
+
+
+        const percentage =
+            day.amount === 0
+                ? 4
+                : Math.max(
+                    8,
+                    (
+                        day.amount /
+                        max
+                    ) * 100
+                );
+
+
+        bar.style.height =
+            percentage + "%";
+
+
+        const label =
+            document.createElement(
+                "span"
+            );
+
+        label.className =
+            "chart-label";
+
+
+        label.textContent =
+            day.date
+                .toLocaleDateString(
+                    "en-US",
+                    {
+                        weekday: "short"
+                    }
+                )
+                .toUpperCase();
+
+
+        column.appendChild(bar);
+
+        column.appendChild(label);
+
+        container.appendChild(column);
+
+    });
+
+}
+
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function updateDate() {
+
+    const dateElement =
+        document.getElementById(
+            "dashboardDate"
+        );
+
+
+    const now =
+        new Date();
+
+
+    dateElement.textContent =
+        now.toLocaleDateString(
+            "en-US",
+            {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
+
+}
+
+
+
+/* =====================================================
+   COMPLETE DASHBOARD UPDATE
+===================================================== */
+
+function updateDashboard() {
+
+    updateDate();
+
+    updateStats();
+
+    renderTopProducts();
+
+    renderRecentOrders();
+
+    renderLowStock();
+
+    renderSalesChart();
+
+}
+
+
+
+/* =====================================================
+   MOBILE SIDEBAR
+===================================================== */
+
+const mobileMenu =
+    document.getElementById(
+        "mobileMenu"
+    );
+
+
+if (mobileMenu) {
+
+    mobileMenu.addEventListener(
+        "click",
+        function () {
+
+            document
+                .getElementById(
+                    "sidebar"
+                )
+                .classList.toggle(
+                    "open"
+                );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout() {
+
+    localStorage.removeItem(
+        "nassahAdminLoggedIn"
+    );
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+
+/* =====================================================
+   STORAGE UPDATE
+===================================================== */
+
+window.addEventListener(
+    "storage",
+    function () {
+
+        updateDashboard();
+
+    }
+);
+
+
+
+/*
+   Refresh when returning to dashboard.
+*/
+
+window.addEventListener(
+    "focus",
+    function () {
+
+        updateDashboard();
+
+    }
+);
+
+
+
+/* =====================================================
+   START DASHBOARD
+===================================================== */
+
+updateDashboard();
+
+</script>
+
+
+</body>
+</html>
