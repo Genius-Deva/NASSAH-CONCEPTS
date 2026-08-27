@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Shop | NASSAH Concept</title>
+
+
+    <!-- MAIN WEBSITE CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+
+    <!-- FONT AWESOME -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <style>
+
+        /* =========================================
+           SHOP HERO
+        ========================================= */
+
+        .shop-hero {
+
+            padding: 80px 7%;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(212,175,55,.12),
+                    transparent 50%
+                );
+
+            border-bottom:
+                1px solid rgba(212,175,55,.2);
+
+        }
+
+
+        .shop-hero h1 {
+
+            font-family:
+                'Cinzel',
+                serif;
+
+            font-size:
+                clamp(
+                    40px,
+                    6vw,
+                    70px
+                );
+
+            letter-spacing:
+                4px;
+
+        }
+
+
+        .shop-hero h1 span {
+
+            color:
+                var(--gold);
+
+        }
+
+
+        .shop-hero p {
+
+            color:
+                var(--gray);
+
+            margin-top:
+                15px;
+
+        }
+
+
+
+        /* =========================================
+           SHOP CONTROLS
+        ========================================= */
+
+        .shop-controls {
+
+            padding:
+                40px 7% 20px;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                20px;
+
+        }
+
+
+        .search-box {
+
+            display:
+                flex;
+
+            width:
+                350px;
+
+            border:
+                1px solid #333;
+
+            background:
+                #101010;
+
+        }
+
+
+        .search-box input {
+
+            flex:
+                1;
+
+            background:
+                transparent;
+
+            border:
+                none;
+
+            outline:
+                none;
+
+            padding:
+                14px;
+
+            color:
+                white;
+
+        }
+
+
+        .search-box button {
+
+            width:
+                50px;
+
+            background:
+                var(--gold);
+
+            border:
+                none;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .sort-select {
+
+            background:
+                #101010;
+
+            color:
+                white;
+
+            border:
+                1px solid #333;
+
+            padding:
+                14px 18px;
+
+            outline:
+                none;
+
+        }
+
+
+
+        /* =========================================
+           CATEGORIES
+        ========================================= */
+
+        .categories {
+
+            padding:
+                20px 7% 40px;
+
+            display:
+                flex;
+
+            gap:
+                12px;
+
+            flex-wrap:
+                wrap;
+
+        }
+
+
+        .category-btn {
+
+            padding:
+                12px 20px;
+
+            background:
+                transparent;
+
+            border:
+                1px solid #333;
+
+            color:
+                #aaa;
+
+            cursor:
+                pointer;
+
+            letter-spacing:
+                1px;
+
+            font-size:
+                10px;
+
+            transition:
+                .3s;
+
+        }
+
+
+        .category-btn:hover,
+        .category-btn.active {
+
+            background:
+                var(--gold);
+
+            color:
+                #000;
+
+            border-color:
+                var(--gold);
+
+        }
+
+
+
+        /* =========================================
+           PRODUCT GRID
+        ========================================= */
+
+        .shop-products {
+
+            padding:
+                30px 7% 80px;
+
+        }
+
+
+        .shop-product-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                20px;
+
+        }
+
+
+
+        /* =========================================
+           PRODUCT CARD
+        ========================================= */
+
+        .shop-product {
+
+            background:
+                #0d0d0d;
+
+            border:
+                1px solid #222;
+
+            transition:
+                .3s;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .shop-product:hover {
+
+            transform:
+                translateY(-7px);
+
+            border-color:
+                var(--gold);
+
+        }
+
+
+
+        /* =========================================
+           PRODUCT IMAGE
+        ========================================= */
+
+        .shop-product-image {
+
+            height:
+                300px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #272727,
+                    #0b0b0b 70%
+                );
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .dynamic-watch-image {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                cover;
+
+            display:
+                block;
+
+            transition:
+                transform .5s ease;
+
+        }
+
+
+        .shop-product:hover
+        .dynamic-watch-image {
+
+            transform:
+                scale(1.05);
+
+        }
+
+
+        .shop-watch {
+
+            width:
+                135px;
+
+            height:
+                135px;
+
+            border:
+                3px solid var(--gold);
+
+            border-radius:
+                50%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            box-shadow:
+                0 0 30px
+                rgba(212,175,55,.12);
+
+        }
+
+
+        .shop-watch i {
+
+            color:
+                var(--gold);
+
+            font-size:
+                48px;
+
+        }
+
+
+
+        /* =========================================
+           BADGE
+        ========================================= */
+
+        .shop-product-image .badge {
+
+            position:
+                absolute;
+
+            top:
+                15px;
+
+            left:
+                15px;
+
+            z-index:
+                5;
+
+            background:
+                var(--gold);
+
+            color:
+                #000;
+
+            padding:
+                7px 10px;
+
+            font-size:
+                8px;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                1px;
+
+        }
+
+
+
+        /* =========================================
+           PRODUCT INFORMATION
+        ========================================= */
+
+        .shop-product-info {
+
+            padding:
+                20px;
+
+        }
+
+
+        .shop-product-info small {
+
+            color:
+                var(--gold);
+
+            letter-spacing:
+                2px;
+
+            font-size:
+                9px;
+
+        }
+
+
+        .shop-product-info h3 {
+
+            font-family:
+                'Cinzel',
+                serif;
+
+            margin:
+                10px 0;
+
+            font-size:
+                17px;
+
+        }
+
+
+        .shop-price {
+
+            color:
+                var(--gold);
+
+            font-size:
+                17px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .old-price {
+
+            color:
+                #666;
+
+            font-size:
+                12px;
+
+            margin-left:
+                8px;
+
+        }
+
+
+        .stock-text {
+
+            color:
+                #777;
+
+            font-size:
+                10px;
+
+            margin-top:
+                8px;
+
+        }
+
+
+        .stock-low {
+
+            color:
+                #d5a832;
+
+        }
+
+
+        .stock-out {
+
+            color:
+                #d95c5c;
+
+        }
+
+
+
+        /* =========================================
+           PRODUCT BUTTONS
+        ========================================= */
+
+        .shop-actions {
+
+            display:
+                flex;
+
+            gap:
+                8px;
+
+            margin-top:
+                15px;
+
+        }
+
+
+        .shop-actions button {
+
+            flex:
+                1;
+
+            padding:
+                11px;
+
+            cursor:
+                pointer;
+
+            transition:
+                .3s;
+
+        }
+
+
+        .shop-add {
+
+            background:
+                var(--gold);
+
+            border:
+                1px solid var(--gold);
+
+            color:
+                #000;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .shop-add:hover {
+
+            background:
+                #f0d477;
+
+        }
+
+
+        .shop-view {
+
+            background:
+                transparent;
+
+            border:
+                1px solid #555;
+
+            color:
+                white;
+
+        }
+
+
+        .shop-view:hover {
+
+            border-color:
+                var(--gold);
+
+            color:
+                var(--gold);
+
+        }
+
+
+        .shop-add:disabled {
+
+            opacity:
+                .4;
+
+            cursor:
+                not-allowed;
+
+        }
+
+
+
+        /* =========================================
+           EMPTY PRODUCTS
+        ========================================= */
+
+        .empty-products {
+
+            display:
+                none;
+
+            text-align:
+                center;
+
+            padding:
+                80px 20px;
+
+            color:
+                #777;
+
+        }
+
+
+        .empty-products i {
+
+            font-size:
+                40px;
+
+            color:
+                var(--gold);
+
+            margin-bottom:
+                20px;
+
+        }
+
+
+        .empty-products h2 {
+
+            color:
+                #ddd;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .shop-product-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .shop-controls {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+
+            }
+
+
+            .search-box {
+
+                width:
+                    100%;
+
+            }
+
+
+            .shop-product-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .shop-product-image {
+
+                height:
+                    330px;
+
+            }
+
+
+            .categories {
+
+                padding-left:
+                    5%;
+
+                padding-right:
+                    5%;
+
+            }
+
+
+            .shop-products {
+
+                padding-left:
+                    5%;
+
+                padding-right:
+                    5%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="header">
+
+
+    <div class="logo">
+
+        <img
+            src="../images/nassah-logo.jpeg"
+            alt="NASSAH Concept"
+        >
+
+    </div>
+
+
+
+    <nav class="navbar">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a
+            href="shop.html"
+            class="active"
+        >
+            Shop
+        </a>
+
+        <a href="../index.html#collections">
+            Collections
+        </a>
+
+        <a href="../index.html#about">
+            About
+        </a>
+
+        <a href="../index.html#contact">
+            Contact
+        </a>
+
+    </nav>
+
+
+
+    <div class="header-icons">
+
+
+        <a href="login.html">
+
+            <i
+                class="fa-regular fa-user"
+            ></i>
+
+        </a>
+
+
+        <a
+            href="cart.html"
+            class="cart-icon"
+        >
+
+            <i
+                class="fa-solid fa-bag-shopping"
+            ></i>
+
+            <span id="cart-count">
+                0
+            </span>
+
+        </a>
+
+
+        <button
+            class="menu-btn"
+            id="menu-btn"
+        >
+
+            <i
+                class="fa-solid fa-bars"
+            ></i>
+
+        </button>
+
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="shop-hero">
+
+
+    <p class="small-title">
+        NASSAH COLLECTION
+    </p>
+
+
+    <h1>
+
+        SHOP
+        <span>WATCHES</span>
+
+    </h1>
+
+
+    <p>
+        Discover your perfect timepiece.
+    </p>
+
+
+</section>
+
+
+
+<!-- =========================================
+     SEARCH & SORT
+========================================= -->
+
+<div class="shop-controls">
+
+
+    <div class="search-box">
+
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search watches..."
+        >
+
+
+        <button
+            type="button"
+            id="searchButton"
+        >
+
+            <i
+                class="fa-solid fa-magnifying-glass"
+            ></i>
+
+        </button>
+
+
+    </div>
+
+
+
+    <select
+        id="sortSelect"
+        class="sort-select"
+    >
+
+        <option value="default">
+            Sort: Featured
+        </option>
+
+        <option value="low">
+            Price: Low to High
+        </option>
+
+        <option value="high">
+            Price: High to Low
+        </option>
+
+        <option value="name">
+            Name: A-Z
+        </option>
+
+    </select>
+
+
+</div>
+
+
+
+<!-- =========================================
+     CATEGORIES
+========================================= -->
+
+<div class="categories">
+
+
+    <button
+        class="category-btn active"
+        data-category="all"
+    >
+        ALL WATCHES
+    </button>
+
+
+    <button
+        class="category-btn"
+        data-category="classic"
+    >
+        CLASSIC
+    </button>
+
+
+    <button
+        class="category-btn"
+        data-category="luxury"
+    >
+        LUXURY
+    </button>
+
+
+    <button
+        class="category-btn"
+        data-category="sport"
+    >
+        SPORT
+    </button>
+
+
+</div>
+
+
+
+<!-- =========================================
+     PRODUCTS
+========================================= -->
+
+<section class="shop-products">
+
+
+    <div
+        class="shop-product-grid"
+        id="productGrid"
+    >
+
+        <!--
+            Products are automatically
+            generated here from the
+            Admin Dashboard.
+        -->
+
+    </div>
+
+
+
+    <!-- EMPTY STATE -->
+
+    <div
+        class="empty-products"
+        id="emptyProducts"
+    >
+
+        <i
+            class="fa-solid fa-magnifying-glass"
+        ></i>
+
+
+        <h2>
+            No watches found
+        </h2>
+
+
+        <p>
+            Try another search or category.
+        </p>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     MAIN WEBSITE JS
+========================================= -->
+
+<script src="../js/script.js"></script>
+
+
+
+<!-- =========================================
+     NASSAH SHOP SYSTEM
+========================================= -->
+
+<script>
+
+
+/* =========================================
+   VARIABLES
+========================================= */
+
+const productGrid =
+    document.getElementById(
+        "productGrid"
+    );
+
+
+const emptyProducts =
+    document.getElementById(
+        "emptyProducts"
+    );
+
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+
+const sortSelect =
+    document.getElementById(
+        "sortSelect"
+    );
+
+
+const categoryButtons =
+    document.querySelectorAll(
+        ".category-btn"
+    );
+
+
+let currentCategory =
+    "all";
+
+
+
+/* =========================================
+   GET ADMIN PRODUCTS
+========================================= */
+
+function getProducts() {
+
+    const stored =
+        localStorage.getItem(
+            "nassahProducts"
+        );
+
+
+    if (!stored) {
+
+        return [];
+
+    }
+
+
+    try {
+
+        return JSON.parse(
+            stored
+        );
+
+    } catch (error) {
+
+        console.error(
+            "NASSAH product data error:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+
+/* =========================================
+   FORMAT PRICE
+========================================= */
+
+function formatPrice(price) {
+
+    return "₦" +
+        Number(price || 0)
+            .toLocaleString();
+
+}
+
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(value) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        value ?? "";
+
+
+    return div.innerHTML;
+
+}
+
+
+
+/* =========================================
+   PRODUCT CARD
+========================================= */
+
+function createProductCard(
+    product,
+    originalIndex
+) {
+
+
+    const article =
+        document.createElement(
+            "article"
+        );
+
+
+    article.className =
+        "shop-product";
+
+
+
+    const name =
+        product.name ||
+        "NASSAH Watch";
+
+
+    const category =
+        product.category ||
+        "classic";
+
+
+    const price =
+        Number(product.price) ||
+        0;
+
+
+    const discount =
+        Number(product.discount) ||
+        0;
+
+
+    const stock =
+        Number(product.stock) ||
+        0;
+
+
+
+    /* DISCOUNT */
+
+    let finalPrice =
+        price;
+
+
+    if (discount > 0) {
+
+        finalPrice =
+            price -
+            (
+                price *
+                discount /
+                100
+            );
+
+    }
+
+
+
+    /* BADGE */
+
+    let badge =
+        "NEW";
+
+
+    if (product.featured) {
+
+        badge =
+            "FEATURED";
+
+    }
+
+
+    if (discount > 0) {
+
+        badge =
+            discount +
+            "% OFF";
+
+    }
+
+
+
+    /* IMAGE */
+
+    let imageHTML = `
+
+        <div class="shop-watch">
+
+            <i
+                class="fa-regular fa-clock"
+            ></i>
+
+        </div>
+
+    `;
+
+
+    if (product.image) {
+
+        imageHTML = `
+
+            <img
+                class="dynamic-watch-image"
+                src="${product.image}"
+                alt="${escapeHTML(name)}"
+            >
+
+        `;
+
+    }
+
+
+
+    /* STOCK */
+
+    let stockClass =
+        "stock-text";
+
+
+    let stockText =
+        stock +
+        " available";
+
+
+    if (stock === 0) {
+
+        stockClass +=
+            " stock-out";
+
+        stockText =
+            "Out of stock";
+
+    }
+
+    else if (stock <= 10) {
+
+        stockClass +=
+            " stock-low";
+
+    }
+
+
+
+    /* CARD */
+
+    article.innerHTML = `
+
+
+        <div class="shop-product-image">
+
+
+            <span class="badge">
+
+                ${badge}
+
+            </span>
+
+
+            ${imageHTML}
+
+
+        </div>
+
+
+
+        <div class="shop-product-info">
+
+
+            <small>
+
+                ${escapeHTML(
+                    category
+                ).toUpperCase()}
+
+            </small>
+
+
+
+            <h3>
+
+                ${escapeHTML(
+                    name
+                )}
+
+            </h3>
+
+
+
+            <div class="shop-price">
+
+                ${formatPrice(
+                    finalPrice
+                )}
+
+                ${
+                    discount > 0
+
+                    ? `
+
+                        <del
+                            class="old-price"
+                        >
+
+                            ${formatPrice(
+                                price
+                            )}
+
+                        </del>
+
+                    `
+
+                    : ""
+
+                }
+
+            </div>
+
+
+
+            <div
+                class="${stockClass}"
+            >
+
+                ${stockText}
+
+            </div>
+
+
+
+            <div class="shop-actions">
+
+
+                <button
+                    class="shop-add"
+                    ${
+                        stock <= 0
+                            ? "disabled"
+                            : ""
+                    }
+                    onclick="
+                        addToCart(
+                            ${originalIndex}
+                        )
+                    "
+                >
+
+                    ${
+                        stock <= 0
+                            ? "OUT OF STOCK"
+                            : "ADD TO CART"
+                    }
+
+                </button>
+
+
+
+                <button
+                    class="shop-view"
+                    onclick="
+                        viewProduct(
+                            ${originalIndex}
+                        )
+                    "
+                >
+
+                    VIEW
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    return article;
+
+}
+
+
+
+/* =========================================
+   RENDER SHOP
+========================================= */
+
+function renderProducts() {
+
+
+    const allProducts =
+        getProducts();
+
+
+    let products =
+        [...allProducts];
+
+
+
+    /* SEARCH */
+
+    const search =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    products =
+        products.filter(
+            product => {
+
+                const name =
+                    String(
+                        product.name ||
+                        ""
+                    ).toLowerCase();
+
+
+                return name.includes(
+                    search
+                );
+
+            }
+        );
+
+
+
+    /* CATEGORY */
+
+    if (
+        currentCategory !==
+        "all"
+    ) {
+
+        products =
+            products.filter(
+                product => {
+
+                    return (
+                        product.category ===
+                        currentCategory
+                    );
+
+                }
+            );
+
+    }
+
+
+
+    /* SORT */
+
+    const sort =
+        sortSelect.value;
+
+
+    if (
+        sort === "low"
+    ) {
+
+        products.sort(
+            (a, b) =>
+                Number(a.price) -
+                Number(b.price)
+        );
+
+    }
+
+
+    if (
+        sort === "high"
+    ) {
+
+        products.sort(
+            (a, b) =>
+                Number(b.price) -
+                Number(a.price)
+        );
+
+    }
+
+
+    if (
+        sort === "name"
+    ) {
+
+        products.sort(
+            (a, b) =>
+                String(
+                    a.name || ""
+                ).localeCompare(
+                    String(
+                        b.name || ""
+                    )
+                )
+        );
+
+    }
+
+
+    /* CLEAR GRID */
+
+    productGrid.innerHTML =
+        "";
+
+
+
+    /* EMPTY */
+
+    if (
+        products.length === 0
+    ) {
+
+        emptyProducts.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    emptyProducts.style.display =
+        "none";
+
+
+
+    /* CREATE CARDS */
+
+    products.forEach(
+        product => {
+
+
+            const originalIndex =
+                allProducts.indexOf(
+                    product
+                );
+
+
+            const card =
+                createProductCard(
+                    product,
+                    originalIndex
+                );
+
+
+            productGrid.appendChild(
+                card
+            );
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   ADD TO CART
+========================================= */
+
+function addToCart(index) {
+
+
+    const products =
+        getProducts();
+
+
+    const product =
+        products[index];
+
+
+    if (!product) {
+
+        return;
+
+    }
+
+
+    const stock =
+        Number(product.stock) ||
+        0;
+
+
+    if (stock <= 0) {
+
+        alert(
+            "Sorry, this watch is out of stock."
+        );
+
+        return;
+
+    }
+
+
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem(
+                "nassahCart"
+            )
+        ) || [];
+
+
+
+    /* PRODUCT PRICE */
+
+    let price =
+        Number(product.price) ||
+        0;
+
+
+    const discount =
+        Number(
+            product.discount
+        ) || 0;
+
+
+    if (discount > 0) {
+
+        price =
+            price -
+            (
+                price *
+                discount /
+                100
+            );
+
+    }
+
+
+
+    /* CHECK EXISTING CART ITEM */
+
+    const existing =
+        cart.find(
+            item =>
+                item.name ===
+                product.name
+        );
+
+
+    if (existing) {
+
+        existing.quantity =
+            Number(
+                existing.quantity
+            ) + 1;
+
+    }
+
+    else {
+
+        cart.push({
+
+            name:
+                product.name,
+
+            price:
+                price,
+
+            quantity:
+                1,
+
+            image:
+                product.image ||
+                ""
+
+        });
+
+    }
+
+
+
+    /* SAVE CART */
+
+    localStorage.setItem(
+        "nassahCart",
+        JSON.stringify(
+            cart
+        )
+    );
+
+
+
+    updateCartCount();
+
+
+
+    alert(
+        product.name +
+        " added to your cart."
+    );
+
+}
+
+
+
+/* =========================================
+   UPDATE CART COUNTER
+========================================= */
+
+function updateCartCount() {
+
+
+    const cart =
+        JSON.parse(
+            localStorage.getItem(
+                "nassahCart"
+            )
+        ) || [];
+
+
+    const count =
+        cart.reduce(
+            (
+                total,
+                item
+            ) => {
+
+                return (
+                    total +
+                    Number(
+                        item.quantity ||
+                        0
+                    )
+                );
+
+            },
+            0
+        );
+
+
+    const cartCount =
+        document.getElementById(
+            "cart-count"
+        );
+
+
+    if (cartCount) {
+
+        cartCount.textContent =
+            count;
+
+    }
+
+}
+
+
+
+/* =========================================
+   VIEW PRODUCT
+========================================= */
+
+function viewProduct(index) {
+
+
+    const products =
+        getProducts();
+
+
+    const product =
+        products[index];
+
+
+    if (!product) {
+
+        return;
+
+    }
+
+
+    const description =
+        product.description ||
+        "Premium NASSAH Concept wristwatch.";
+
+
+    alert(
+
+        product.name +
+        "\n\n" +
+        description +
+        "\n\nPrice: " +
+        formatPrice(
+            product.price
+        )
+
+    );
+
+}
+
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+searchInput.addEventListener(
+    "input",
+    renderProducts
+);
+
+
+
+/* =========================================
+   SORT
+========================================= */
+
+sortSelect.addEventListener(
+    "change",
+    renderProducts
+);
+
+
+
+/* =========================================
+   CATEGORY FILTER
+========================================= */
+
+categoryButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+
+                categoryButtons.forEach(
+                    btn => {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                currentCategory =
+                    button.dataset.category;
+
+
+                renderProducts();
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =========================================
+   LISTEN FOR ADMIN CHANGES
+========================================= */
+
+window.addEventListener(
+    "storage",
+    event => {
+
+        if (
+            event.key ===
+            "nassahProducts"
+        ) {
+
+            renderProducts();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================
+   INITIALIZE
+========================================= */
+
+renderProducts();
+
+updateCartCount();
+
+
+</script>
+
+
+</body>
+
+</html>

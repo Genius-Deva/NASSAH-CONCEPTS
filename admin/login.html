@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NASSAH Admin Login</title>
+
+    <link
+        rel="stylesheet"
+        href="../admin-css/admin.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body class="login-page">
+
+
+    <div class="login-container">
+
+
+        <div class="login-brand">
+
+            <div class="crown">
+                <i class="fa-solid fa-crown"></i>
+            </div>
+
+            <h1>NASSAH</h1>
+
+            <p>CONCEPT</p>
+
+            <span>
+                TIME MEETS STYLE
+            </span>
+
+        </div>
+
+
+        <div class="login-card">
+
+            <div class="login-heading">
+
+                <h2>Welcome Back</h2>
+
+                <p>
+                    Sign in to your NASSAH dashboard
+                </p>
+
+            </div>
+
+
+            <form id="adminLoginForm">
+
+
+                <div class="input-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="admin@nassahconcept.com"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="password-toggle"
+                        >
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="login-options">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="remember"
+                        >
+
+                        Remember me
+
+                    </label>
+
+                    <a href="#">
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+
+                    <span>
+                        SIGN IN
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+
+                <p
+                    id="loginMessage"
+                    class="login-message"
+                ></p>
+
+
+            </form>
+
+
+            <div class="login-footer">
+
+                <span>
+                    NASSAH CONCEPT
+                </span>
+
+                <p>
+                    Secure Admin Portal
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+<script>
+
+    const loginForm =
+        document.getElementById("adminLoginForm");
+
+    const password =
+        document.getElementById("password");
+
+    const togglePassword =
+        document.getElementById("togglePassword");
+
+    const message =
+        document.getElementById("loginMessage");
+
+
+    togglePassword.addEventListener(
+        "click",
+        () => {
+
+            const type =
+                password.type === "password"
+                    ? "text"
+                    : "password";
+
+            password.type = type;
+
+            togglePassword.innerHTML =
+                type === "password"
+                    ? '<i class="fa-regular fa-eye"></i>'
+                    : '<i class="fa-regular fa-eye-slash"></i>';
+
+        }
+    );
+
+
+    loginForm.addEventListener(
+        "submit",
+        (event) => {
+
+            event.preventDefault();
+
+
+            const email =
+                document.getElementById("email").value;
+
+            const pass =
+                document.getElementById("password").value;
+
+
+            /*
+                TEMPORARY DEMO LOGIN
+
+                We will replace this with
+                real authentication later.
+            */
+
+            if (
+                email === "admin@nassah.com" &&
+                pass === "admin123"
+            ) {
+
+                localStorage.setItem(
+                    "nassahAdminLoggedIn",
+                    "true"
+                );
+
+                window.location.href =
+                    "index.html";
+
+            } else {
+
+                message.textContent =
+                    "Invalid admin email or password.";
+
+                message.classList.add("error");
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>
